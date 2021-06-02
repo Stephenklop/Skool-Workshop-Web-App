@@ -1,0 +1,45 @@
+<app-menubar></app-menubar>
+
+<section class="customers">
+    <table datatable [dtOptions]="dtOptions" class="customers__table">
+        <thead class="customers__table-thead">
+            <tr class="customers__table--row customers__table--row__header">
+                <th class="customers__table--header">Naam</th>
+                <th class="customers__table--header">Gebruikersnaam</th>
+                <th class="customers__table--header">Laatst actief</th>
+                <th class="customers__table--header">Datum geregistreerd</th>
+                <th class="customers__table--header">E-mail</th>
+                <th class="customers__table--header">Bestellingen</th>
+                <th class="customers__table--header">Totale uitgaven</th>
+                <th class="customers__table--header">AOV</th>
+                <th class="customers__table--header">Land/regio</th>
+                <th class="customers__table--header">Plaats</th>
+                <th class="customers__table--header">Postcode</th>
+            </tr>
+        </thead>
+        <tbody *ngIf="customers?.length != 0" class="customers__table-tbody">
+            <tr *ngFor="let customer of customers">
+                <td class="customers__table--entry" routerLink="/customer-details/{{customer.id}}">{{ customer.name }}</td>
+                <td class="customers__table--entry">{{ customer.username }}</td>
+                <td class="customers__table--entry">{{ customer.lastActive | date:'dd LLL yyyy' }}</td>
+                <td class="customers__table--entry">{{ customer.dateRegistered | date:'dd LLL yyyy' }}</td>
+                <td class="customers__table--entry">{{ customer.email }}</td>
+                <td class="customers__table--entry">{{ customer.orders }}</td>
+                <td class="customers__table--entry">{{ customer.totalExpenses | currency:"EUR" : "symbol" }}</td>
+                <td class="customers__table--entry">{{ customer.aov | currency:"EUR":"symbol" }}</td>
+                <td class="customers__table--entry">{{ customer.country }}</td>
+                <td class="customers__table--entry">{{ customer.town }}</td>
+                <td class="customers__table--entry">{{ customer.zipcode }}</td>
+            </tr>
+        </tbody>
+        <tbody *ngIf="customers?.length == 0" class="customers__table-tbody">
+            <td colspan="12" class="customers__table--entry">No data!</td>
+        </tbody>
+    </table>
+    <div class="customers__footer">
+        <p class="customers__footer-total">{{ totalCustomers }} Klanten</p>
+        <p class="customers__footer-averageOrder">{{ averageOrder }} Gemiddelde Bestellingen</p>
+        <p class="customers__footer-averageExpense">{{ averageExpense }} Gemiddelde uitgaven levensduur</p>
+        <p class="customers__footer-averageOrderWorth">{{ averageOrderWorth }} Gemiddelde bestellingswaarde</p>
+    </div>
+</section>

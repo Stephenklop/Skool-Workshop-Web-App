@@ -32,9 +32,20 @@
             ],
             "styles": [
               "src/assets/fonts/proxima_nova.scss",
+              "node_modules/datatables.net-dt/css/jquery.dataTables.css",
+              "node_modules/datatables.net-colreorder-dt/css/colReorder.dataTables.css",
+              "node_modules/datatables.net-colreorder-dt/css/colReorder.dataTables.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/datatables.net/js/jquery.dataTables.js",
+              "node_modules/datatables.net-colreorder/js/dataTables.colReorder.js",
+              "node_modules/datatables.net-colreorder/js/dataTables.colReorder.js"
+            ],
+            "allowedCommonJsDependencies": [
+              "chart.js"
+            ]
           },
           "configurations": {
             "production": {

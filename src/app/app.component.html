@@ -1,6 +1,6 @@
 <!-- If Loader is not active-->
 <ng-container *ngIf="globals.loader_finished">
-    <app-home></app-home>
+    <router-outlet *ngIf="globals.loader_finished"></router-outlet>
 </ng-container>
 
 <!-- If loader is active -->

@@ -1,0 +1,17 @@
+.home {
+    margin-top: 7rem;
+    padding: 2.5rem;
+
+    &__sessions {
+        width: 25%;
+        background-color: white;
+        border-radius: .5rem;
+        border: .1rem solid #ebe9f1;
+        padding: 2.5rem;
+
+        &-title {
+            padding-bottom: 2.5rem;
+            font-size: 2.5rem;
+        }
+    }
+}

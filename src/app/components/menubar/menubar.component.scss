@@ -1,65 +1,64 @@
 @import '../../../styles.scss';
 
 .menubar {
-    width: 17vw;
-    height: 100vh;
-    background-color: white;
-    padding-top: 3rem;
+    width: 100%;
+    border-bottom: .1rem solid #ebe9f1;
+    background: #f8f8f8;
+    box-shadow: none;
+    background-color: $main-color;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    height: 7rem;
 
-    &__title {
-        padding-left: 5rem;
-    }
+    &__menu {
+        // margin-left: 5rem;
+        padding: 0 5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
 
-    &__list {
-        width: 100%;
-        padding-top: 4rem;
+        &-list {
+            list-style: none;
+            display: flex;
+            align-items: center;
 
-        &-item {
-            height: 4rem;
+            &--item {
+                position: relative;
+                white-space: nowrap;
+                height: 7rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
 
-            &:not(:first-child) {
-                margin-top: 1.5rem;
-            }
-
-            &.active {
-                color: $main-color;
-
-                a {
-                    img {
-                        margin-left: 4rem;
+                &__link {
+                    display: inline-block;
+                    margin: 0 1.5rem;
+                    color: white;
+                    
+                    span {
+                        font-size: 2rem;
                     }
                 }
+            }
+        }
 
-                .menubar__list-item--active {
-                    display: inline-block;
+        &-right {
+            display: flex;
+            align-items: center;
+            color: white;
+
+            &__name {
+                margin-left: 2.5rem;
+
+                &--name {
+                    font-size: 1.6rem;
                 }
-            }
 
-            a {
-                height: 100%;
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                text-decoration: none;
-
-                img {
-                    margin-left: 5rem;
+                &--function {
+                    font-size: 1.3rem;
                 }
-            }
-
-            &--active {
-                display: none;
-                width: 1rem;
-                height: 100%;
-                background-color: $main-color;
-                border-radius: 50px;
-            }
-
-            &__title {
-                font-size: 1.6rem;
-                margin-left: 2rem;
-                font-weight: 600;
-                color: black;
             }
         }
     }

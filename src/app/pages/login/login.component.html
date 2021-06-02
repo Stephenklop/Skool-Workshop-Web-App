@@ -1,16 +1,22 @@
 <section class="login">
     <div class="login-form">
-        <h1 class="login-form__title">Welkom</h1>
-        <p class="login-form__desc">Vul uw gegevens in voor toegang tot uw account.</p>
-    
+        <h4 class="login-form__title">Welkom bij SkoolAdmin! 👋</h4>
+        <p class="login-form__desc">Log in op uw account en start het avontuur</p>
         <form class="login-form__form">
-            <label for="username" class="text__label">Gebruikersnaam</label>
-            <input id="username" type="text" class="input input__regular">
+            <div class="login-form__form-group">
+                <label for="login-email" class="text__label">Email</label>
+                <input class="input__default login-form__form-control" type="email" name="login-email" id="login-email" placeholder="john@example.com" tabindex="1" autofocus>
+            </div>
 
-            <label for="password" class="text__label">Wachtwoord</label>
-            <input id="password" type="password" class="input input__regular">
-        
-            <button class="btn btn__regular">Log In</button>
+            <div class="login-form__form-group">
+                <div class="login-form__form-group-box">
+                    <label for="login-password" class="text__label">Wachtwoord</label>
+                    <a routerLink="/forgot-password" class="login-form__form-group-box__forgotpassword">Forgot Password?</a>
+                </div>
+                <input class="input__default login-form__form-control" type="password" name="login-password" id="login-password" placeholder="********" tabindex="2">
+            </div>
+
+            <button (click)="login()" class="btn__regular login-form__form-submit">Log In</button>
         </form>
     </div>
 </section>

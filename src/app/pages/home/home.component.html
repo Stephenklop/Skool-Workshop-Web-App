@@ -1,1 +1,15 @@
 <app-menubar></app-menubar>
+
+<main class="home">
+    <section class="home__sessions">
+        <h2 class="home__sessions-title">Sessies per device</h2>
+        <canvas baseChart 
+            [data]="pieChartData" 
+            [labels]="pieChartLabels" 
+            [chartType]="pieChartType"
+            [options]="pieChartOptions"
+            [plugins]="pieChartPlugins"
+            [legend]="pieChartLegend">
+        </canvas>
+    </section>
+</main>
