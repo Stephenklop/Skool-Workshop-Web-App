@@ -1,15 +1,35 @@
 <app-menubar></app-menubar>
 
 <main class="home">
-    <section class="home__sessions">
-        <h2 class="home__sessions-title">Sessies per device</h2>
-        <canvas baseChart 
-            [data]="pieChartData" 
-            [labels]="pieChartLabels" 
-            [chartType]="pieChartType"
-            [options]="pieChartOptions"
-            [plugins]="pieChartPlugins"
-            [legend]="pieChartLegend">
-        </canvas>
+  <section class="home__statistics">
+    <section class="home__statistics__sessions">
+      <h2 class="home__statistics__sessions-title">Sessies per device</h2>
+      <canvas
+        baseChart
+        [data]="pieChartData"
+        [labels]="pieChartLabels"
+        [chartType]="pieChartType"
+        [options]="pieChartOptions"
+        [plugins]="pieChartPlugins"
+        [legend]="pieChartLegend"
+      >
+      </canvas>
     </section>
+    <section class="home__statistics__stats">
+      <h2 class="home__statistics__stats-title">Aantal logins in de app</h2>
+    </section>
+    <section class="home__statistics__orders">
+      <h2 class="home__statistics__orders-title">
+        Aantal bestellingen uit de app
+      </h2>
+    </section>
+  </section>
+  <section class="home__other">
+    <section class="home__other__notifications">
+      <h2 class="home__other__notifications-title">Stuur notification</h2>
+    </section>
+    <section class="home__other__quiz">
+      <h2 class="home__other__quiz-title">Verander quiz</h2>
+    </section>
+  </section>
 </main>

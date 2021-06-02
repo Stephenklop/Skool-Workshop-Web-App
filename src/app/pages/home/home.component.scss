@@ -1,17 +1,83 @@
 .home {
-    margin-top: 7rem;
-    padding: 2.5rem;
+  margin-top: 7rem;
+  padding: 2.5rem;
+  width: 100%;
+  height: 100%;
 
+  &__statistics {
+    display: flex;
     &__sessions {
-        width: 25%;
-        background-color: white;
-        border-radius: .5rem;
-        border: .1rem solid #ebe9f1;
-        padding: 2.5rem;
+      width: 33%;
+      background-color: white;
+      border-radius: 0.5rem;
+      border: 0.1rem solid #ebe9f1;
+      padding: 2.5rem;
+      margin: 2rem;
 
-        &-title {
-            padding-bottom: 2.5rem;
-            font-size: 2.5rem;
-        }
+      &-title {
+        padding-bottom: 2.5rem;
+        font-size: 2.5rem;
+      }
     }
+    &__stats {
+      width: 33%;
+      background-color: white;
+      border-radius: 0.5rem;
+      border: 0.1rem solid #ebe9f1;
+      padding: 2.5rem;
+      margin: 2rem;
+
+      &-title {
+        padding-bottom: 2.5rem;
+        font-size: 2.5rem;
+      }
+    }
+
+    &__orders {
+      width: 34%;
+      background-color: white;
+      border-radius: 0.5rem;
+      border: 0.1rem solid #ebe9f1;
+      padding: 2.5rem;
+      margin: 2rem;
+
+      &-title {
+        padding-bottom: 2.5rem;
+        font-size: 2.5rem;
+      }
+    }
+  }
+
+  &__other {
+    display: flex;
+    &__notifications {
+      grid-row: 2;
+      width: 50%;
+      background-color: white;
+      border-radius: 0.5rem;
+      border: 0.1rem solid #ebe9f1;
+      padding: 2.5rem;
+      margin: 2rem;
+
+      &-title {
+        padding-bottom: 2.5rem;
+        font-size: 2.5rem;
+      }
+    }
+
+    &__quiz {
+      grid-row: 2;
+      width: 50%;
+      background-color: white;
+      border-radius: 0.5rem;
+      border: 0.1rem solid #ebe9f1;
+      padding: 2.5rem;
+      margin: 2rem;
+
+      &-title {
+        padding-bottom: 2.5rem;
+        font-size: 2.5rem;
+      }
+    }
+  }
 }
