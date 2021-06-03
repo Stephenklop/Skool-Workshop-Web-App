@@ -1,27 +1,31 @@
 <app-menubar></app-menubar>
 
+<link href="http://cdn.syncfusion.com/**19.1.0.63**/js/web/flat-azure/ej.web.all.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+<script src="http://cdn.syncfusion.com/**19.1.0.63**/js/web/ej.web.all.min.js" type="text/javascript"></script>
+
 <main class="home">
   <section class="home__statistics">
     <section class="home__statistics__sessions">
       <h2 class="home__statistics__sessions-title">Sessies per device</h2>
-      <canvas
-        baseChart
-        [data]="pieChartData"
-        [labels]="pieChartLabels"
-        [chartType]="pieChartType"
-        [options]="pieChartOptions"
-        [plugins]="pieChartPlugins"
-        [legend]="pieChartLegend"
-      >
+      <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+        [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend">
       </canvas>
     </section>
     <section class="home__statistics__stats">
       <h2 class="home__statistics__stats-title">Aantal logins in de app</h2>
+      <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [legend]="lineChartLegend"
+        [chartType]="lineChartType" [plugins]="lineChartPlugins" [options]="lineChartOptions"
+        [colors]="lineChartColors">
+      </canvas>
     </section>
     <section class="home__statistics__orders">
       <h2 class="home__statistics__orders-title">
         Aantal bestellingen uit de app
       </h2>
+      <canvas baseChart [datasets]="lineChartDataOrders" [labels]="lineChartLabels" [legend]="lineChartLegend"
+        [chartType]="lineChartType" [plugins]="lineChartPlugins" [options]="lineChartOptions"
+        [colors]="lineChartColors"></canvas>
     </section>
   </section>
   <section class="home__other">
