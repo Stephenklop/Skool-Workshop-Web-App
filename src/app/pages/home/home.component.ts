@@ -1,7 +1,6 @@
-import { variable } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
-import { isEmptyObject } from 'jquery';
+import * as faker from 'faker';
 import { BaseChartDirective, Color, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip, MultiDataSet, SingleDataSet } from 'ng2-charts';
 import { Globals } from 'src/globals';
 
@@ -24,9 +23,42 @@ export class HomeComponent implements OnInit {
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
   public pieChartPlugins = [];
+  public user: any = undefined;
 
   ngOnInit(): void {
+    this.generateFakeData();
   }
+
+  selectUser(name: String, email: String) {
+    console.log(name)
+    console.log(email)
+    this.testList.forEach(function (value: any) {
+      document.getElementById("userButton" + value.name)!.style.backgroundColor = "#f8f8f8"
+      document.getElementById("userButton" + value.name)!.style.color = "#707070"
+      document.getElementById("userButton" + value.name)!.style.border = "2px solid #707070"
+    });
+    try {
+      document.getElementById("userButton" + name)!.style.backgroundColor = "#F49700"
+      document.getElementById("userButton" + name)!.style.color = "#fff"
+      document.getElementById("userButton" + name)!.style.border = "none"
+
+      this.user = { name, email }
+    } catch (e) {
+      console.log(e)
+    }
+    console.log(this.user)
+  }
+
+  userSelected() {
+    console.log("clicked on next")
+    if (this.user != undefined) {
+      document.getElementById("list")!.style.visibility = "hidden"
+    } else {
+      console.log("geen user geselecteerd")
+    }
+  }
+
+  public testList: any = [];
 
   public lineChartLabels: Label[] = ['1', '2', '3', '4', '5', '6', '7'];
   public lineChartData: ChartDataSets[] = [
@@ -99,4 +131,16 @@ export class HomeComponent implements OnInit {
     },
   };
 
+  generateFakeData() {
+    let id = 1;
+
+    for (let i = 0; i < 30; i++) {
+      this.testList.push({
+        name: faker.name.firstName() + " " + faker.name.lastName(),
+        email: faker.name.firstName() + "" + faker.name.lastName() + "@gmail.com"
+
+      });
+      console.log("user " + i + " is gemaakt")
+    }
+  }
 }

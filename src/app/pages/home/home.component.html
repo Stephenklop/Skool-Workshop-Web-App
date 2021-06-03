@@ -31,6 +31,15 @@
   <section class="home__other">
     <section class="home__other__notifications">
       <h2 class="home__other__notifications-title">Stuur notification</h2>
+      <div class="home__other__notifications-list" id="list">
+        <button *ngFor="let name of testList" (click)="selectUser( name.name, name.email)" id="userButton{{name.name}}">
+          <h1>{{ name.name }}</h1>
+          {{ name.email }}
+        </button>
+      </div>
+      <button class="home__other__notifications-next" (click)="userSelected()">
+        <h1>Volgende</h1>
+      </button>
     </section>
     <section class="home__other__quiz">
       <h2 class="home__other__quiz-title">Verander quiz</h2>
