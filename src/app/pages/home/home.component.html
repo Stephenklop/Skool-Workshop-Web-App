@@ -30,16 +30,66 @@
   </section>
   <section class="home__other">
     <section class="home__other__notifications">
-      <h2 class="home__other__notifications-title">Stuur notification</h2>
-      <div class="home__other__notifications-list" id="list">
-        <button *ngFor="let name of testList" (click)="selectUser( name.name, name.email)" id="userButton{{name.name}}">
-          <h1>{{ name.name }}</h1>
-          {{ name.email }}
+      <h2 class="home__other__notifications-title">Stuur notificatie</h2>
+      <button (click)="switchNotificationGroup()" class="home__other__notifications__switch" id="switchButton">Een
+        persoon</button>
+      <div class="home__other__notifications__single" id="onePersonNotifications">
+        <input type="text" id="search" class="input__default home__other__notifications__single-input-form-inputfield"
+          (click)="startFilter()">
+        <i-feather name="search" id="icon_search"></i-feather>
+        <div class="home__other__notifications__single-list" id="list">
+          <button *ngFor="let name of globals.notification_used_list"
+            (click)="selectUser( name.id, name.name, name.email)" id="userButton{{name.id}}">
+            <h1>{{ name.name }}</h1>
+            {{ name.email }}
+          </button>
+        </div>
+        <div class="home__other__notifications__single-input" id="home__other-input">
+          <form name="notification" class="home__other__notifications__single-input-form">
+            <label for="title" class="text__label home__other__notifications__single-input-form-label">
+              <h1>Titel:</h1>
+            </label>
+            <br>
+            <input name="title" type="text" id="title"
+              class="input__default home__other__notifications__single-input-form-inputfield" required>
+            <br>
+            <label for="description" class="text__label home__other__notifications__single-input-form-label">
+              <h1>Beschrijving:</h1>
+            </label>
+            <br>
+            <input name="description" type="text" id="description"
+              class="input__default home__other__notifications__single-input-form-inputfield" required>
+            <br>
+            <input type="submit"
+              class="btn__regular login-form__form-submit home__other__notifications__single-input-form-submit"
+              (click)="sendNotification()" id="send">
+          </form>
+        </div>
+        <button class="home__other__notifications__single-next" (click)="userSelected()" id="next">
+          <h1>Volgende</h1>
         </button>
       </div>
-      <button class="home__other__notifications-next" (click)="userSelected()">
-        <h1>Volgende</h1>
-      </button>
+      <div class="home__other__notifications__everyone" id="everyoneNotification">
+        <form name="notification" class="home__other__notifications__single-input-form">
+          <label for="title" class="text__label home__other__notifications__single-input-form-label">
+            <h1>Titel:</h1>
+          </label>
+          <br>
+          <input name="title" type="text" id="title"
+            class="input__default home__other__notifications__single-input-form-inputfield" required>
+          <br>
+          <label for="description" class="text__label home__other__notifications__single-input-form-label">
+            <h1>Beschrijving:</h1>
+          </label>
+          <br>
+          <input name="description" type="text" id="description"
+            class="input__default home__other__notifications__single-input-form-inputfield" required>
+          <br>
+          <input type="submit"
+            class="btn__regular login-form__form-submit home__other__notifications__single-input-form-submit"
+            (click)="sendNotification()" id="send">
+        </form>
+      </div>
     </section>
     <section class="home__other__quiz">
       <h2 class="home__other__quiz-title">Verander quiz</h2>
