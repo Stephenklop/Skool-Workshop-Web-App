@@ -18,6 +18,7 @@ import { CustomersComponent } from './pages/customers/customers.component';
 import { DatatabletestComponent } from './test/datatabletest/datatabletest.component';
 import { CustomerDetailsComponent } from './pages/customer-details/customer-details.component';
 import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
+import { GoogleAnalyticsService } from './services/google-analytics.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http'
   providers: [
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' },
     Globals,
-    HttpClient
+    HttpClient,
+    GoogleAnalyticsService
   ],
   bootstrap: [AppComponent]
 })
