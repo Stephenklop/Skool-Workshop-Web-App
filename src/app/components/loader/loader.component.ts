@@ -8,9 +8,10 @@ import { Globals } from 'src/globals';
 })
 export class LoaderComponent implements OnInit {
 
-  constructor(public globals: Globals) { }
+  constructor(
+    public globals: Globals,
+  ) { }
 
   ngOnInit(): void {
   }
-
 }

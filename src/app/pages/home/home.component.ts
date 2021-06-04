@@ -1,10 +1,9 @@
-import { analyzeAndValidateNgModules } from '@angular/compiler';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Filter } from 'angular-feather/icons';
+import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import * as faker from 'faker';
-import { BaseChartDirective, Color, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip, MultiDataSet, SingleDataSet } from 'ng2-charts';
+import { Color, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip, MultiDataSet, SingleDataSet } from 'ng2-charts';
 import { Globals } from 'src/globals';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +11,13 @@ import { Globals } from 'src/globals';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  constructor(public globals: Globals) {
+  constructor(public router: Router, public globals: Globals) {
+    if ((sessionStorage.getItem("loggedIn") != null && sessionStorage.getItem("loggedIn") == "true") || !this.globals.currentlyLoggedIn) {
+      console.log("logged in")
+    } else {
+      this.router.navigate([''])
+    }
+    console.log(sessionStorage.getItem("loggedIn"))
     monkeyPatchChartJsTooltip();
     monkeyPatchChartJsLegend();
   }

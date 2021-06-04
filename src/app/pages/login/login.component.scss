@@ -20,6 +20,15 @@
         background-color: white;
         border-radius: 1rem;
 
+        &__stayLoggedIn{
+            display: flex;
+            &-checkbox{
+                background-color: $main-color;
+                 filter: hue-rotate(190deg) 
+            }
+
+        }
+
         &__title {
             font-size: 2rem;
             font-weight: 600;
