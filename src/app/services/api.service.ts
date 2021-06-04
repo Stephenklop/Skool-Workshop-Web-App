@@ -30,4 +30,29 @@ export class ApiService {
       headers: new HttpHeaders().set('Authorization', String(this.token))
     });
   }
+
+  createNewQuiz(title: string, link: String) {
+    return this.http.post(this.apiUrl + `/quiz`, {
+      title: title,
+      url: link,
+      status: false
+    }).pipe(catchError(error => {
+      console.log(error)
+      return ([{ error: error }])
+    }));
+  }
+
+  getAllQuizes() {
+    return this.http.get(this.apiUrl + `/quiz`, {}).pipe(catchError(error => {
+      console.log(error)
+      return ([{ error: error }])
+    }));
+  }
+
+  setQuizStatus(title: String, status: boolean) {
+    return this.http.put(this.apiUrl + `/quiz/${title}`, {}).pipe(catchError((error: any) => {
+      console.log(error)
+      return ([{ error: error }])
+    }));
+  }
 }

@@ -4,6 +4,7 @@ import * as faker from 'faker';
 import { Color, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip, MultiDataSet, SingleDataSet } from 'ng2-charts';
 import { Globals } from 'src/globals';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-home',
@@ -11,8 +12,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  constructor(public router: Router, public globals: Globals) {
-    if ((sessionStorage.getItem("loggedIn") != null && sessionStorage.getItem("loggedIn") == "true") || !this.globals.currentlyLoggedIn) {
+  constructor(public router: Router, public globals: Globals, private api: ApiService) {
+    if ((sessionStorage.getItem("loggedIn") != null && sessionStorage.getItem("loggedIn") == "true") || this.globals.currentlyLoggedIn) {
       console.log("logged in")
     } else {
       this.router.navigate([''])
@@ -21,6 +22,8 @@ export class HomeComponent implements OnInit {
     monkeyPatchChartJsTooltip();
     monkeyPatchChartJsLegend();
   }
+
+  public titleChecked: String = "";
 
   public pieChartOptions: ChartOptions = {
     responsive: true,
@@ -35,13 +38,37 @@ export class HomeComponent implements OnInit {
   public isDisabled: boolean = false;
 
   ngOnInit(): void {
-    this.generateFakeData();
+    // this.generateFakeData();
+    console.log(this.globals.notification_test_list)
     this.globals.notification_used_list = this.globals.notification_test_list;
+    document.getElementById("menuWelcomeName")!.textContent = this.globals.user.name
+    document.getElementById("menuAccountName")!.textContent = this.globals.user.username
+    document.getElementById("menuAccountRole")!.textContent = this.globals.user.role
     document.getElementById("send")!.addEventListener("click", function (event) {
       event.preventDefault()
     });
 
+    this.globals.quiz_list_original.forEach((item: any) => {
+      console.log(item)
+      if (item.status == true) {
+        let radioButton = <HTMLInputElement>document.getElementById("quizRadioButton" + item.url)
+        console.log("quizRadioButton" + item.url)
+        console.log(item.title)
+        console.log(radioButton)
+        // radioButton.checked(true)
+      }
+    })
 
+
+  }
+
+  isChecked(quiz: any) {
+    if (quiz.status == true) {
+      console.log("test")
+      return true;
+    } else {
+      return false;
+    }
   }
 
   filterList(searchKey: String, testList: any, globals: any) {
@@ -257,4 +284,41 @@ export class HomeComponent implements OnInit {
       console.log("user " + i + " is gemaakt")
     }
   }
+
+  createNewQuiz() {
+    const titleInput = <HTMLInputElement>document.getElementById("quizTitleInput")
+    const title = titleInput.value
+
+    const linkInput = <HTMLInputElement>document.getElementById("quizLinkInput")
+    const link = linkInput.value
+
+    if (link != "" && title != "") {
+      this.api.createNewQuiz(title, link).subscribe((data: any) => {
+        console.log(data)
+        titleInput.value = ""
+        linkInput.value = ""
+        this.api.getAllQuizes().subscribe((data: any) => {
+          console.log(data.quiz)
+          this.globals.quiz_list_original = data.quiz
+        })
+      })
+    }
+  }
+
+  selectQuiz() {
+    console.log(this.titleChecked)
+    this.globals.quiz_list_original.forEach((item: any) => {
+
+      if (item.title === this.titleChecked) {
+        this.api.setQuizStatus(this.titleChecked, true).subscribe((data) => {
+          console.log(data)
+        })
+      }
+    })
+  }
+
+  onRadioButtonClicked(title: String) {
+    this.titleChecked = title
+  }
+
 }

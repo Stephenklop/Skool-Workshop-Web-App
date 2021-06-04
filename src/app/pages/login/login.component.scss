@@ -22,9 +22,15 @@
 
         &__stayLoggedIn{
             display: flex;
+            font-size: 1.4rem;
+            margin-top: 2rem;
             &-checkbox{
                 background-color: $main-color;
-                 filter: hue-rotate(190deg) 
+                 filter: hue-rotate(187deg) 
+            }
+
+            &-text {
+                margin-left: 1rem;
             }
 
         }

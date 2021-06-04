@@ -20,8 +20,9 @@
             </div>
 
             <div class="login-form__stayLoggedIn">
-                <input type="checkbox" class="login-form__stayLoggedIn-checkbox" (click)="stayLoggedIn"
-                    id="stayLoggedIn">Ingelogd blijven
+                <input type="checkbox" class="login-form__stayLoggedIn-checkbox" (click)="changeStayLoggedIn()"
+                    id="stayLoggedIn">
+                <p class="login-form__stayLoggedIn-text">Ingelogd blijven</p>
             </div>
 
             <button (click)="login()" class="btn__regular login-form__form-submit" type="button">Log In</button>

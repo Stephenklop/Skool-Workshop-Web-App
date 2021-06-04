@@ -96,6 +96,43 @@
     </section>
     <section class="home__other__quiz">
       <h2 class="home__other__quiz-title">Verander quiz</h2>
+      <div class="home__other__quiz__choose">
+        <h3 class="home__other__quiz__choose-title">Bestaande Quizen:</h3>
+        <div class="home__other__quiz__choose-list">
+          <div class="home__other__quiz__choose-list-item" *ngFor="let quiz of globals.quiz_list_original"
+            id="quizDiv{{quiz.id}}" (click)="onRadioButtonClicked(quiz.title)">
+            <input type="radio" name="quizChooser" id="quizRadioButton{{quiz.url}}"
+              class="home__other__quiz__choose-list-item-input" [checked]="quiz.status === true">
+            <div class=" home__other__quiz__choose-list-item-text">
+              <h2 class="home__other__quiz__choose-list-item-text-title">{{quiz.title}}</h2>
+              <p class="home__other__quiz__choose-list-item-text-link">{{quiz.url}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="home__other__quiz__choose__button">
+          <button class="home__other__quiz__choose__button-button" (click)="selectQuiz()">Selecteer</button>
+        </div>
+      </div>
+      <div class="home__other__quiz__create">
+        <h2 class="home__other__quiz__create-title">Maak een nieuwe Quiz</h2>
+        <div class="home__other__quiz__create__input">
+          <div class="home__other__quiz__create__input-title">
+            <label class="home__other__quiz__create__input-title-text text__label">Titel:</label>
+            <br>
+            <input type="text" class="home__other__quiz__create__input-title-field input__default" id="quizTitleInput">
+          </div>
+
+          <div class="home__other__quiz__create__input-link">
+            <label class="home__other__quiz__create__input-link-text text__label">Link:</label>
+            <br>
+            <input type="text" class="home__other__quiz__create__input-link-field input__default" id="quizLinkInput">
+          </div>
+
+          <div class="hoome__other__quiz__create__input-button">
+            <button (click)="createNewQuiz()" class="home__other__quiz__create__input-button-button">Toevoegen</button>
+          </div>
+        </div>
+      </div>
     </section>
   </section>
 </main>
