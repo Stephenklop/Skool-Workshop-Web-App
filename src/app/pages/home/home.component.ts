@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
   public pieChartPlugins = [];
   public user: any = undefined;
   public notificationToEveryone: boolean = false;
+  public isDisabled: boolean = false;
 
   ngOnInit(): void {
     this.generateFakeData();
@@ -95,7 +96,8 @@ export class HomeComponent implements OnInit {
       document.getElementById("icon_search")!.style.display = "none";
       document.getElementById("list")!.style.zIndex = "0";
       document.getElementById("home__other-input")!.style.display = "block";
-
+      document.getElementById("switchButtonEveryone")!
+      this.isDisabled = true;
     } else {
       console.log("geen user geselecteerd")
     }
@@ -108,47 +110,63 @@ export class HomeComponent implements OnInit {
     let description = descriptionInput.value
     console.log(title);
     console.log(description)
+    this.isDisabled = false;
 
     if (title != "" && description != "") {
       console.log("send notification to: " + this.user.name + " (" + this.user.email + ")\n" + "With title: " + title + "\nand description: " + description + ";")
-
-      this.globals.notification_test_list.forEach(function (value: any) {
-        if (document.getElementById("userButton" + value.id) != null) {
-          document.getElementById("userButton" + value.id)!.style.backgroundColor = "#f8f8f8"
-          document.getElementById("userButton" + value.id)!.style.color = "#707070"
-          document.getElementById("userButton" + value.id)!.style.border = "2px solid #707070"
-        }
-      });
-
-      titleInput.value = ""
-      descriptionInput.value = ""
-
-      this.user = undefined
-
-      document.getElementById("home__other-input")!.style.display = "none";
-      document.getElementById("next")!.style.display = "block";
-      document.getElementById("search")!.style.display = "block";
-      document.getElementById("icon_search")!.style.display = "block";
-      document.getElementById("list")!.style.zIndex = "1";
-      document.getElementById("home__other-input")!.style.zIndex = "1";
-      document.getElementById("list")!.style.display = "flex";
-
+      this.resetOnePersonNotification()
     }
 
   }
 
-  switchNotificationGroup() {
-    if (this.notificationToEveryone) {
-      document.getElementById("everyoneNotification")!.style.display = "none"
-      document.getElementById("onePersonNotifications")!.style.display = "flex"
-      this.notificationToEveryone = false
-      document.getElementById("switchButton")!.textContent = "Een persoon"
-    } else {
-      document.getElementById("everyoneNotification")!.style.display = "flex"
-      document.getElementById("onePersonNotifications")!.style.display = "none"
-      this.notificationToEveryone = true
-      document.getElementById("switchButton")!.textContent = "Iedereen"
-    }
+  resetOnePersonNotification() {
+    let titleInput = <HTMLInputElement>document.getElementById("title")
+    let title: any = titleInput.value
+    let descriptionInput = <HTMLInputElement>document.getElementById("description")
+    let description = descriptionInput.value
+
+    this.globals.notification_test_list.forEach(function (value: any) {
+      if (document.getElementById("userButton" + value.id) != null) {
+        document.getElementById("userButton" + value.id)!.style.backgroundColor = "#f8f8f8"
+        document.getElementById("userButton" + value.id)!.style.color = "#707070"
+        document.getElementById("userButton" + value.id)!.style.border = "2px solid #707070"
+      }
+    });
+
+    titleInput.value = ""
+    descriptionInput.value = ""
+
+    this.user = undefined
+
+    document.getElementById("home__other-input")!.style.display = "none";
+    document.getElementById("next")!.style.display = "block";
+    document.getElementById("search")!.style.display = "block";
+    document.getElementById("icon_search")!.style.display = "block";
+    document.getElementById("list")!.style.zIndex = "1";
+    document.getElementById("home__other-input")!.style.zIndex = "1";
+    document.getElementById("list")!.style.display = "flex";
+  }
+
+  switchNotificationEveryone() {
+    document.getElementById("everyoneNotification")!.style.display = "flex"
+    document.getElementById("onePersonNotifications")!.style.display = "none"
+    this.notificationToEveryone = true
+    document.getElementById("switchButtonOnePerson")!.style.background = "#EFEFEF"
+    document.getElementById("switchButtonEveryone")!.style.background = "#F49701"
+    document.getElementById("switchButtonEveryone")!.style.color = "#FFF"
+    document.getElementById("switchButtonOnePerson")!.style.color = "#707070"
+  }
+
+  switchNotificationOnePerson() {
+    document.getElementById("everyoneNotification")!.style.display = "none"
+    document.getElementById("onePersonNotifications")!.style.display = "flex"
+    this.notificationToEveryone = false
+    this.isDisabled = false;
+    document.getElementById("switchButtonOnePerson")!.style.background = "#F49701"
+    document.getElementById("switchButtonEveryone")!.style.background = "#EFEFEF"
+    document.getElementById("switchButtonEveryone")!.style.color = "#707070"
+    document.getElementById("switchButtonOnePerson")!.style.color = "#FFF"
+    this.resetOnePersonNotification()
   }
 
 

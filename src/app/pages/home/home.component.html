@@ -31,8 +31,11 @@
   <section class="home__other">
     <section class="home__other__notifications">
       <h2 class="home__other__notifications-title">Stuur notificatie</h2>
-      <button (click)="switchNotificationGroup()" class="home__other__notifications__switch" id="switchButton">Een
+      <button (click)="switchNotificationOnePerson()" class="home__other__notifications__switch__onePerson"
+        id="switchButtonOnePerson">Een
         persoon</button>
+      <button (click)="switchNotificationEveryone()" [disabled]="isDisabled"
+        class="home__other__notifications__switch__everyone" id="switchButtonEveryone">Iedereen</button>
       <div class="home__other__notifications__single" id="onePersonNotifications">
         <input type="text" id="search" class="input__default home__other__notifications__single-input-form-inputfield"
           (click)="startFilter()">
