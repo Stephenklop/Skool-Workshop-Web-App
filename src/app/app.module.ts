@@ -17,6 +17,7 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
 import { CustomersComponent } from './pages/customers/customers.component';
 import { DatatabletestComponent } from './test/datatabletest/datatabletest.component';
 import { CustomerDetailsComponent } from './pages/customer-details/customer-details.component';
+import { GoogleAnalyticsService } from './services/google-analytics.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { CustomerDetailsComponent } from './pages/customer-details/customer-deta
   ],
   providers: [
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR'},
-    Globals
+    Globals,
+    GoogleAnalyticsService
   ],
   bootstrap: [AppComponent]
 })
