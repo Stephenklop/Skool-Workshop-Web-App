@@ -28,8 +28,8 @@ export class HomeComponent implements OnInit {
   public pieChartOptions: ChartOptions = {
     responsive: true,
   };
-  public pieChartLabels: Label[] = [['Desktop'], ['Mobile'], 'Tablet'];
-  public pieChartData: SingleDataSet = [30, 50, 20];
+  public pieChartLabels: Label[] = [];
+  public pieChartData: SingleDataSet = [];
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
   public pieChartPlugins = [];
@@ -59,7 +59,24 @@ export class HomeComponent implements OnInit {
       }
     })
 
+    this.setSessionsPerDeviceCategoryAnalytics();
+  }
 
+  setSessionsPerDeviceCategoryAnalytics() {
+    this.api.getSessionsPerDeviceCategoryAnalytics().subscribe((data: any) => {
+      const PieChartLabels: Label[] = [];
+
+      data.forEach((sessionItem: any) => {
+        let count = 0;
+        sessionItem.dimensionValues.forEach((dimensionItem: any) => {
+          PieChartLabels[count] = dimensionItem.value;
+          count++;
+        });
+      });
+
+      this.pieChartLabels = [['Desktop'], ['Mobile'], 'Tablet'];
+      this.pieChartData = [30, 50, 20];
+    })
   }
 
   isChecked(quiz: any) {
