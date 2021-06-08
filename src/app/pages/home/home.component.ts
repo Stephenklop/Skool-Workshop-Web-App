@@ -86,6 +86,7 @@ export class HomeComponent implements OnInit {
   setSessionsPerDeviceCategoryAnalytics() {
     this.api.getSessionsPerDeviceCategoryAnalytics().subscribe((data: any) => {
       const PieChartLabels: Label[] = [];
+      console.log(data)
 
       data.forEach((sessionItem: any) => {
         let count = 0;
@@ -94,7 +95,7 @@ export class HomeComponent implements OnInit {
           count++;
         });
       });
-
+      console.log(PieChartLabels)
       this.pieChartLabels = [['Desktop'], ['Mobile'], 'Tablet'];
       this.pieChartData = [30, 50, 20];
     })

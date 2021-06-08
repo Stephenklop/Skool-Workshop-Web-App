@@ -57,7 +57,7 @@ export class ApiService {
   }
 
   getSessionsPerDeviceCategoryAnalytics() {
-    return this.http.get("http://localhost:3000/api/analytics/sessionsPerDevice", {}).pipe(catchError((error: any) => {
+    return this.http.get(this.apiUrl + "/analytics/sessionsPerDevice", {}).pipe(catchError((error: any) => {
       console.log(error);
       return ([{ error: error }]);
     }));
