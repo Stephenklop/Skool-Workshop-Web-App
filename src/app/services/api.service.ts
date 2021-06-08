@@ -55,4 +55,11 @@ export class ApiService {
       return ([{ error: error }])
     }));
   }
+
+  getSessionsPerDeviceCategoryAnalytics() {
+    return this.http.get("http://localhost:3000/api/analytics/sessionsPerDevice", {}).pipe(catchError((error: any) => {
+      console.log(error);
+      return ([{ error: error }]);
+    }));
+  }
 }
