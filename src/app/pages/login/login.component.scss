@@ -98,6 +98,41 @@
       }
     }
   }
+
+  &-load {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.2); // Make sure this color has an opacity of less than 1
+    backdrop-filter: blur(2px); // This be the blur
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__spinner {
+      display: block;
+      width: 10rem;
+      height: 10rem;
+      border-radius: 100%;
+      border-top: .4rem solid $main-color;
+      border-right: .4rem solid $main-color;
+      animation-name: spin;
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .popup {
