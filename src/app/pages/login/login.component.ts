@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Query } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { Globals } from 'src/globals';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
   selector: 'app-login',
@@ -16,8 +17,30 @@ export class LoginComponent implements OnInit {
   ) {}
 
   public stayLoggedIn: boolean = false;
+  public enableLoginButton: boolean = false;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    let emailField = <HTMLInputElement>document.getElementById('login-email')!;
+    let passwordField = <HTMLInputElement>(
+      document.getElementById('login-password')!
+    );
+
+    emailField.addEventListener('input', (event) => {
+      if (emailField.value !== '') {
+        this.enableLoginButton = true;
+      } else {
+        this.enableLoginButton = false;
+      }
+    });
+
+    passwordField.addEventListener('input', (event) => {
+      if (passwordField.value !== '') {
+        this.enableLoginButton = true;
+      } else {
+        this.enableLoginButton = false;
+      }
+    });
+  }
 
   public changeStayLoggedIn() {
     if (this.stayLoggedIn) {

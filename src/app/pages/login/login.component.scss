@@ -88,6 +88,10 @@
         margin-top: 2.5rem;
       }
 
+      &-submit:disabled {
+        background: #555;
+      }
+
       &-control {
         display: block;
         width: 100%;

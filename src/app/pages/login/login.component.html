@@ -52,6 +52,7 @@
         (click)="login()"
         class="btn__regular login-form__form-submit"
         type="button"
+        [disabled]="enableLoginButton == false"
       >
         Log In
       </button>
