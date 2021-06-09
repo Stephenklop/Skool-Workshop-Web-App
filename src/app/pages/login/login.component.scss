@@ -1,90 +1,157 @@
-@import '../../../styles.scss';
+@import "../../../styles.scss";
 
 .login {
-    width: 100%;
-    height: 100vh;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1920' height='1080' preserveAspectRatio='none' viewBox='0 0 1920 1080'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1000%26quot%3b)' fill='none'%3e%3crect width='1920' height='1080' x='0' y='0' fill='rgba(244%2c 151%2c 0%2c 1)'%3e%3c/rect%3e%3cpath d='M0%2c572.931C105.729%2c577.159%2c153.452%2c434.205%2c245.447%2c381.922C345.462%2c325.081%2c503.105%2c355.838%2c558.955%2c255.266C613.881%2c156.356%2c528.219%2c37.32%2c497.235%2c-71.492C470.473%2c-165.479%2c452.891%2c-263.141%2c390.035%2c-337.967C326.624%2c-413.453%2c233.742%2c-450.031%2c144.342%2c-491.584C39.705%2c-540.219%2c-70.202%2c-646.057%2c-176.564%2c-601.321C-286.061%2c-555.266%2c-272.353%2c-391.145%2c-334.759%2c-290.071C-383.958%2c-210.387%2c-480.844%2c-163.294%2c-503.169%2c-72.345C-526.274%2c21.783%2c-508.319%2c126.449%2c-457.213%2c208.802C-408.44%2c287.396%2c-305.501%2c305.158%2c-233.146%2c362.782C-149.612%2c429.309%2c-106.704%2c568.664%2c0%2c572.931' fill='%23e88f00'%3e%3c/path%3e%3cpath d='M1920 1757.629C2048.411 1753.65 2156.117 1678.127 2277.68 1636.562 2444.803 1579.42 2678.3630000000003 1619.385 2768.517 1467.505 2856.203 1319.783 2708.343 1139.795 2672.249 971.843 2639.124 817.706 2658.467 648.0509999999999 2565.109 521.009 2468.797 389.946 2311.273 324.154 2157.454 271.304 1997.867 216.47199999999998 1824.122 155.41999999999996 1665.063 211.765 1507.981 267.40999999999997 1424.455 430.903 1326.443 565.68 1236.335 689.5889999999999 1135.5549999999998 812.4780000000001 1117.5720000000001 964.628 1099.792 1115.064 1148.554 1267.099 1228.321 1395.879 1302.488 1515.618 1422.974 1593.906 1547.783 1659.181 1663.858 1719.8890000000001 1789.071 1761.6860000000001 1920 1757.629' fill='%23ff9e01'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1000'%3e%3crect width='1920' height='1080' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1920' height='1080' preserveAspectRatio='none' viewBox='0 0 1920 1080'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1000%26quot%3b)' fill='none'%3e%3crect width='1920' height='1080' x='0' y='0' fill='rgba(244%2c 151%2c 0%2c 1)'%3e%3c/rect%3e%3cpath d='M0%2c572.931C105.729%2c577.159%2c153.452%2c434.205%2c245.447%2c381.922C345.462%2c325.081%2c503.105%2c355.838%2c558.955%2c255.266C613.881%2c156.356%2c528.219%2c37.32%2c497.235%2c-71.492C470.473%2c-165.479%2c452.891%2c-263.141%2c390.035%2c-337.967C326.624%2c-413.453%2c233.742%2c-450.031%2c144.342%2c-491.584C39.705%2c-540.219%2c-70.202%2c-646.057%2c-176.564%2c-601.321C-286.061%2c-555.266%2c-272.353%2c-391.145%2c-334.759%2c-290.071C-383.958%2c-210.387%2c-480.844%2c-163.294%2c-503.169%2c-72.345C-526.274%2c21.783%2c-508.319%2c126.449%2c-457.213%2c208.802C-408.44%2c287.396%2c-305.501%2c305.158%2c-233.146%2c362.782C-149.612%2c429.309%2c-106.704%2c568.664%2c0%2c572.931' fill='%23e88f00'%3e%3c/path%3e%3cpath d='M1920 1757.629C2048.411 1753.65 2156.117 1678.127 2277.68 1636.562 2444.803 1579.42 2678.3630000000003 1619.385 2768.517 1467.505 2856.203 1319.783 2708.343 1139.795 2672.249 971.843 2639.124 817.706 2658.467 648.0509999999999 2565.109 521.009 2468.797 389.946 2311.273 324.154 2157.454 271.304 1997.867 216.47199999999998 1824.122 155.41999999999996 1665.063 211.765 1507.981 267.40999999999997 1424.455 430.903 1326.443 565.68 1236.335 689.5889999999999 1135.5549999999998 812.4780000000001 1117.5720000000001 964.628 1099.792 1115.064 1148.554 1267.099 1228.321 1395.879 1302.488 1515.618 1422.974 1593.906 1547.783 1659.181 1663.858 1719.8890000000001 1789.071 1761.6860000000001 1920 1757.629' fill='%23ff9e01'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1000'%3e%3crect width='1920' height='1080' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    &-form {
-        max-width: 40rem;
-        width: 40rem;
-        border: .1rem solid #ebe9f1;
-        box-shadow: none;
-        padding: 2.5rem;
-        background-color: white;
-        border-radius: 1rem;
+  &-form {
+    max-width: 40rem;
+    width: 40rem;
+    border: 0.1rem solid #ebe9f1;
+    box-shadow: none;
+    padding: 2.5rem;
+    background-color: white;
+    border-radius: 1rem;
 
-        &__stayLoggedIn{
-            display: flex;
-            font-size: 1.4rem;
-            margin-top: 2rem;
-            &-checkbox{
-                background-color: $main-color;
-                 filter: hue-rotate(187deg) 
-            }
+    &__stayLoggedIn {
+      display: flex;
+      font-size: 1.4rem;
+      margin-top: 2rem;
+      &-checkbox {
+        background-color: $main-color;
+        filter: hue-rotate(187deg);
+      }
 
-            &-text {
-                margin-left: 1rem;
-            }
-
-        }
-
-        &__title {
-            font-size: 2rem;
-            font-weight: 600;
-        }
-
-        &__desc {
-            margin-top: .5rem;
-            font-size: 1.4rem;
-        }
-
-        &__form {
-            margin-top: 2rem;
-
-            &-group {
-                .text__label {
-                    display: inline-block;
-                    margin-bottom: .5rem;
-                }
-
-                &:first-child {
-                    margin-bottom: 1.4rem;
-                }
-
-                &-box {
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    margin-bottom: .5rem;
-
-                    .text__label {
-                        margin-bottom: 0;
-                    }
-                    
-                    &__forgotpassword {
-                        font-size: 1.4rem;
-                        text-decoration: none;
-                        color: $main-color;
-                    }
-                }
-            }
-
-            &-submit {
-                margin-top: 2.5rem;
-            }
-    
-            &-control {
-                display: block;
-                width: 100%;
-    
-            }
-        }
+      &-text {
+        margin-left: 1rem;
+      }
     }
+
+    &__popup {
+      display: none;
+      color: red;
+
+      &__active {
+        display: block;
+      }
+    }
+
+    &__title {
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    &__desc {
+      margin-top: 0.5rem;
+      font-size: 1.4rem;
+    }
+
+    &__form {
+      margin-top: 2rem;
+
+      &-group {
+        .text__label {
+          display: inline-block;
+          margin-bottom: 0.5rem;
+        }
+
+        &:first-child {
+          margin-bottom: 1.4rem;
+        }
+
+        &-box {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 0.5rem;
+
+          .text__label {
+            margin-bottom: 0;
+          }
+
+          &__forgotpassword {
+            font-size: 1.4rem;
+            text-decoration: none;
+            color: $main-color;
+          }
+        }
+      }
+
+      &-submit {
+        margin-top: 2.5rem;
+      }
+
+      &-control {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

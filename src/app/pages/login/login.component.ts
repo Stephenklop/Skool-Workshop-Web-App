@@ -34,12 +34,11 @@ export class LoginComponent implements OnInit {
       document.getElementById('login-password')!
     );
 
-    this.globals.loader_finished = false;
-
     this.api.login(emailInput.value, passwordInput.value).subscribe((data) => {
       console.log(data);
       if (data.error == undefined) {
         if (data.result.role === 'administrator') {
+          this.globals.loader_finished = false;
           this.globals.login_token = data.result.token;
           this.getCustomers();
 
@@ -61,8 +60,15 @@ export class LoginComponent implements OnInit {
           console.log('geen rechten om in te loggen');
         }
       } else {
+        let popup = document.getElementById('loginFailedPopUp')!;
+        popup.style.display = 'block';
       }
     });
+  }
+
+  myFunction() {
+    var popup = document.getElementById('myPopup')!;
+    popup.classList.toggle('show');
   }
 
   getCustomers() {
