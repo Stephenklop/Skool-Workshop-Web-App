@@ -105,9 +105,14 @@
     height: 100vh;
     top: 0;
     left: 0;
-    background: rgba(255, 255, 255, 0.2); // Make sure this color has an opacity of less than 1
+    background: rgba(
+      255,
+      255,
+      255,
+      0.2
+    ); // Make sure this color has an opacity of less than 1
     backdrop-filter: blur(2px); // This be the blur
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
 
@@ -116,8 +121,8 @@
       width: 10rem;
       height: 10rem;
       border-radius: 100%;
-      border-top: .4rem solid $main-color;
-      border-right: .4rem solid $main-color;
+      border-top: 0.4rem solid $main-color;
+      border-right: 0.4rem solid $main-color;
       animation-name: spin;
       animation-duration: 1s;
       animation-iteration-count: infinite;

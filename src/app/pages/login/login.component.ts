@@ -52,6 +52,8 @@ export class LoginComponent implements OnInit {
 
   login() {
     // document.querySelector('')
+    let loader = document.getElementById('loader')!;
+    loader.style.display = 'flex';
     let emailInput = <HTMLInputElement>document.getElementById('login-email')!;
     let passwordInput = <HTMLInputElement>(
       document.getElementById('login-password')!
