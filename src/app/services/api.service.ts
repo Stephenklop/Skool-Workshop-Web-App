@@ -38,21 +38,21 @@ export class ApiService {
       status: false
     }).pipe(catchError(error => {
       console.log(error)
-      return ([{ error: error }])
+      return ([{ error: error }]);
     }));
   }
 
   getAllQuizes() {
     return this.http.get(this.apiUrl + `/quiz`, {}).pipe(catchError(error => {
       console.log(error)
-      return ([{ error: error }])
+      return ([{ error: error }]);
     }));
   }
 
   setQuizStatus(title: String, status: boolean) {
     return this.http.put(this.apiUrl + `/quiz/${title}`, {}).pipe(catchError((error: any) => {
       console.log(error)
-      return ([{ error: error }])
+      return ([{ error: error }]);
     }));
   }
 
@@ -61,5 +61,12 @@ export class ApiService {
       console.log(error);
       return ([{ error: error }]);
     }));
+  }
+
+  sendNotificationToEveryone(message: String, title: String) {
+    return this.http.post(this.apiUrl + `/message/topic`, { notification: { title: title, message: message }, topic: "main" }).pipe(catchError((error: any) => {
+      console.log(error)
+      return ([{ error: error }]);
+    }))
   }
 }

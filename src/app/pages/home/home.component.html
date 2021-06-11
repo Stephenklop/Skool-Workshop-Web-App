@@ -78,19 +78,18 @@
             <h1>Titel:</h1>
           </label>
           <br>
-          <input name="title" type="text" id="title"
+          <input name="title" type="text" id="titleEveryone"
             class="input__default home__other__notifications__single-input-form-inputfield" required>
           <br>
           <label for="description" class="text__label home__other__notifications__single-input-form-label">
             <h1>Beschrijving:</h1>
           </label>
           <br>
-          <input name="description" type="text" id="description"
+          <input name="description" type="text" id="descriptionEveryone"
             class="input__default home__other__notifications__single-input-form-inputfield" required>
           <br>
-          <input type="submit"
-            class="btn__regular login-form__form-submit home__other__notifications__single-input-form-submit"
-            (click)="sendNotification()" id="send">
+          <button class="btn__regular login-form__form-submit home__other__notifications__single-input-form-submit"
+            (click)="sendNotificationToEveryone()" id="sendToEveryone">Verzenden</button>
         </form>
       </div>
     </section>

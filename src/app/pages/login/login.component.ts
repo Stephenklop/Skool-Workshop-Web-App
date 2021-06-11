@@ -2,7 +2,6 @@ import { Component, OnInit, Query } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { Globals } from 'src/globals';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +13,7 @@ export class LoginComponent implements OnInit {
     public globals: Globals,
     public router: Router,
     private api: ApiService
-  ) {}
+  ) { }
 
   public stayLoggedIn: boolean = false;
   public enableLoginButton: boolean = false;
@@ -65,6 +64,7 @@ export class LoginComponent implements OnInit {
         if (data.result.role === 'administrator') {
           this.globals.loader_finished = false;
           this.globals.login_token = data.result.token;
+
           this.getCustomers();
 
           if (this.stayLoggedIn) {

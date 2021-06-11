@@ -80,6 +80,10 @@ export class HomeComponent implements OnInit {
       }
     })
 
+    document.getElementById("sendToEveryone")!.addEventListener('click', (event) => {
+      event.preventDefault();
+    })
+
     this.setSessionsPerDeviceCategoryAnalytics();
   }
 
@@ -200,6 +204,25 @@ export class HomeComponent implements OnInit {
         description +
         ';'
       );
+      this.resetOnePersonNotification();
+    }
+  }
+
+  sendNotificationToEveryone() {
+    let titleInput = <HTMLInputElement>document.getElementById('titleEveryone');
+    let title: any = titleInput.value;
+    let descriptionInput = <HTMLInputElement>(
+      document.getElementById('descriptionEveryone')
+    );
+    let description = descriptionInput.value;
+    console.log(title);
+    console.log(description);
+    this.isDisabled = false;
+
+    if (title != '' && description != '') {
+      this.api.sendNotificationToEveryone(description, title).subscribe(data => {
+        console.log(data)
+      })
       this.resetOnePersonNotification();
     }
   }
