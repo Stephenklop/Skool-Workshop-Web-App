@@ -56,17 +56,42 @@ export class ApiService {
     }));
   }
 
-  getSessionsPerDeviceCategoryAnalytics() {
-    return this.http.get(this.apiUrl + "/analytics/sessionsPerDevice", {}).pipe(catchError((error: any) => {
-      console.log(error);
-      return ([{ error: error }]);
-    }));
-  }
-
   sendNotificationToEveryone(message: String, title: String) {
-    return this.http.post(this.apiUrl + `/message/topic`, { notification: { title: title, message: message }, topic: "main" }).pipe(catchError((error: any) => {
+    return this.http.post(this.apiUrl + `/message/topic`, { title: title, description: message, topic: "main" }).pipe(catchError((error: any) => {
       console.log(error)
       return ([{ error: error }]);
     }))
   }
+
+  sendNotificationToAccount(message: String, title: String, tokens: Array<any>) {
+    console.log({ title: title, description: message, userTokens: tokens })
+    return this.http.post(this.apiUrl + `/message/multiple`, { title: title, description: message, userTokens: tokens }).pipe(catchError((error: any) => {
+      console.log(error)
+      return ([{ error: error }])
+    }))
+  }
+
+  getLoginAnalytics() {
+    return this.http.get(this.apiUrl + `/analytics/totalLogins`, {}).pipe(catchError((error: any) => {
+      console.log(error);
+      return ([{ error: error }])
+    }))
+  }
+
+  getOrderAnalytics() {
+    return this.http.get(this.apiUrl + `/analytics/totalOrders`, {}).pipe(catchError((error: any) => {
+      console.log(error);
+      return ([{ error: error }])
+    }))
+  }
+
+  getAppOpenAnalytics() {
+    return this.http.get(this.apiUrl + `/analytics/totalAppOpens`, {}).pipe(catchError((error: any) => {
+      console.log(error);
+      return ([{ error: error }])
+    }))
+  }
+
+
+
 }

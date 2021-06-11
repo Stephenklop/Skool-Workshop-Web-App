@@ -15,4 +15,8 @@ export class Globals {
   login_token: String = '';
   notification_test_list: Array<any> = [];
   notification_used_list: Array<any> = [];
+
+  loginAnalytics: Array<any> = [];
+  orderAnalytics: Array<any> = [];
+  appOpenAnalytics: Array<any> = [];
 }

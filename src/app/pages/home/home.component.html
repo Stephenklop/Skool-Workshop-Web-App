@@ -7,9 +7,10 @@
 <main class="home">
   <section class="home__statistics">
     <section class="home__statistics__sessions">
-      <h2 class="home__statistics__sessions-title">Sessies per device</h2>
-      <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
-        [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend">
+      <h2 class="home__statistics__sessions-title">Aantal keer de app geopend</h2>
+      <canvas baseChart [datasets]="lineChartDataOpens" [labels]="lineChartLabels" [legend]="lineChartLegend"
+        [chartType]="lineChartType" [plugins]="lineChartPlugins" [options]="lineChartOptions"
+        [colors]="lineChartColors">
       </canvas>
     </section>
     <section class="home__statistics__stats">
@@ -42,7 +43,7 @@
         <i-feather name="search" id="icon_search"></i-feather>
         <div class="home__other__notifications__single-list" id="list">
           <button *ngFor="let name of globals.notification_used_list"
-            (click)="selectUser( name.id, name.name, name.email)" id="userButton{{name.id}}">
+            (click)="selectUser( name.id, name.name, name.email, name.tokens)" id="userButton{{name.id}}">
             <h1>{{ name.name }}</h1>
             {{ name.email }}
           </button>

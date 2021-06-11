@@ -87,6 +87,7 @@ export class LoginComponent implements OnInit {
       } else {
         let popup = document.getElementById('loginFailedPopUp')!;
         popup.style.display = 'block';
+        loader.style.display = 'none';
       }
     });
   }
@@ -102,12 +103,20 @@ export class LoginComponent implements OnInit {
       console.log(data.result);
       let userList: any = [];
       data.result.forEach((element: any) => {
-        const name = element.first_name + ' ' + element.last_name;
-        const email = element.email;
-        const id = element.id;
-        userList.push({ name: name, email: email, id: id });
+        console.log(element.meta_data);
+        console.log(element.meta_data.key);
+        element.meta_data.forEach((metaData: any) => {
+          if (metaData.key === "_firebase_tokens") {
+            const tokens: Array<any> = metaData.value
+            const name = element.first_name + ' ' + element.last_name;
+            const email = element.email;
+            const id = element.id;
+            userList.push({ name: name, email: email, id: id, tokens: tokens });
+          }
+        });
       });
       this.globals.notification_test_list = userList;
+      console.log(this.globals.notification_test_list);
       this.getQuizes();
     });
   }
@@ -119,8 +128,32 @@ export class LoginComponent implements OnInit {
       if (data.quiz.length != 0) {
         this.globals.quiz_list_original = data.quiz;
       }
+      this.getLoginAnalytics();
+    });
+  }
+
+  getLoginAnalytics() {
+    this.api.getLoginAnalytics().subscribe((data: any) => {
+      console.log(data);
+      this.globals.loginAnalytics = data.result;
+      this.getOrderAnalytics();
+    })
+  }
+
+  getOrderAnalytics() {
+    this.api.getOrderAnalytics().subscribe((data: any) => {
+      console.log(data);
+      this.globals.orderAnalytics = data.result;
+      this.getAppOpenAnalytics();
+    })
+  }
+
+  getAppOpenAnalytics() {
+    this.api.getAppOpenAnalytics().subscribe((data: any) => {
+      console.log(data);
+      this.globals.appOpenAnalytics = data.result;
       this.router.navigate(['/home']);
       this.globals.loader_finished = true;
-    });
+    })
   }
 }

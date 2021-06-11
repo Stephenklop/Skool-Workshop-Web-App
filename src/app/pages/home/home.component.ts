@@ -50,8 +50,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     // this.generateFakeData();
-    console.log(this.globals.notification_test_list);
+    console.log(this.globals.loginAnalytics);
     this.globals.notification_used_list = this.globals.notification_test_list;
+    console.log(this.globals.notification_used_list)
     document.getElementById(
       'menuWelcomeName'
     )!.textContent = this.globals.user.name;
@@ -88,21 +89,8 @@ export class HomeComponent implements OnInit {
   }
 
   setSessionsPerDeviceCategoryAnalytics() {
-    this.api.getSessionsPerDeviceCategoryAnalytics().subscribe((data: any) => {
-      const PieChartLabels: Label[] = [];
-      console.log(data)
-
-      data.forEach((sessionItem: any) => {
-        let count = 0;
-        sessionItem.dimensionValues.forEach((dimensionItem: any) => {
-          PieChartLabels[count] = dimensionItem.value;
-          count++;
-        });
-      });
-      console.log(PieChartLabels)
-      this.pieChartLabels = [['Desktop'], ['Mobile'], 'Tablet'];
-      this.pieChartData = [30, 50, 20];
-    })
+    this.pieChartLabels = [['Desktop'], ['Mobile'], 'Tablet'];
+    this.pieChartData = [30, 50, 20];
   }
 
   isChecked(quiz: any) {
@@ -137,7 +125,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  selectUser(id: Number, name: String, email: String) {
+  selectUser(id: Number, name: String, email: String, tokens: Array<any>) {
     console.log(name);
     console.log(email);
     this.globals.notification_test_list.forEach(function (value: any) {
@@ -157,7 +145,7 @@ export class HomeComponent implements OnInit {
       document.getElementById('userButton' + id)!.style.color = '#fff';
       document.getElementById('userButton' + id)!.style.border = 'none';
 
-      this.user = { id, name, email };
+      this.user = { id, name, email, tokens };
     } catch (e) {
       console.log(e);
     }
@@ -204,6 +192,9 @@ export class HomeComponent implements OnInit {
         description +
         ';'
       );
+      this.api.sendNotificationToAccount(description, title, this.user.tokens).subscribe(data => {
+        console.log(data)
+      })
       this.resetOnePersonNotification();
     }
   }
@@ -287,12 +278,15 @@ export class HomeComponent implements OnInit {
     this.resetOnePersonNotification();
   }
 
-  public lineChartLabels: Label[] = ['1', '2', '3', '4', '5', '6', '7'];
+  public lineChartLabels: Label[] = ['1', '2', '3', '4', '5'];
   public lineChartData: ChartDataSets[] = [
-    { data: [0, 1, 4, 2, 3, 1, 2], label: 'Logins in de app' },
+    { data: this.globals.loginAnalytics, label: 'Logins in de app' },
+  ];
+  public lineChartDataOpens: ChartDataSets[] = [
+    { data: this.globals.appOpenAnalytics, label: 'Logins in de app' },
   ];
   public lineChartDataOrders: ChartDataSets[] = [
-    { data: [3, 2, 3, 1, 1, 0, 2], label: 'Bestellingen vanuit de app' },
+    { data: this.globals.orderAnalytics, label: 'Bestellingen vanuit de app' },
   ];
   public lineChartType: ChartType = 'line';
   public lineChartLegend = true;
