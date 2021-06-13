@@ -107,11 +107,13 @@ export class LoginComponent implements OnInit {
         console.log(element.meta_data.key);
         element.meta_data.forEach((metaData: any) => {
           if (metaData.key === "_firebase_tokens") {
-            const tokens: Array<any> = metaData.value
-            const name = element.first_name + ' ' + element.last_name;
-            const email = element.email;
-            const id = element.id;
-            userList.push({ name: name, email: email, id: id, tokens: tokens });
+            if (metaData.value.length > 0) {
+              const tokens: Array<any> = metaData.value
+              const name = element.first_name + ' ' + element.last_name;
+              const email = element.email;
+              const id = element.id;
+              userList.push({ name: name, email: email, id: id, tokens: tokens });
+            }
           }
         });
       });

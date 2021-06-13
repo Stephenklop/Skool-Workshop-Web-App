@@ -283,7 +283,7 @@ export class HomeComponent implements OnInit {
     { data: this.globals.loginAnalytics, label: 'Logins in de app' },
   ];
   public lineChartDataOpens: ChartDataSets[] = [
-    { data: this.globals.appOpenAnalytics, label: 'Logins in de app' },
+    { data: this.globals.appOpenAnalytics, label: 'App geopend' },
   ];
   public lineChartDataOrders: ChartDataSets[] = [
     { data: this.globals.orderAnalytics, label: 'Bestellingen vanuit de app' },
@@ -356,18 +356,6 @@ export class HomeComponent implements OnInit {
       ],
     },
   };
-
-  generateFakeData() {
-    for (let i = 0; i < 30; i++) {
-      this.globals.notification_test_list.push({
-        id: i + 1,
-        name: faker.name.firstName() + ' ' + faker.name.lastName(),
-        email:
-          faker.name.firstName() + '' + faker.name.lastName() + '@gmail.com',
-      });
-      console.log('user ' + i + ' is gemaakt');
-    }
-  }
 
   createNewQuiz() {
     const titleInput = <HTMLInputElement>(
