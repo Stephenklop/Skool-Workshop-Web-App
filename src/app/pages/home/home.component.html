@@ -1,15 +1,138 @@
 <app-menubar></app-menubar>
 
+<link href="http://cdn.syncfusion.com/**19.1.0.63**/js/web/flat-azure/ej.web.all.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+<script src="http://cdn.syncfusion.com/**19.1.0.63**/js/web/ej.web.all.min.js" type="text/javascript"></script>
+
 <main class="home">
-    <section class="home__sessions">
-        <h2 class="home__sessions-title">Sessies per device</h2>
-        <canvas baseChart 
-            [data]="pieChartData" 
-            [labels]="pieChartLabels" 
-            [chartType]="pieChartType"
-            [options]="pieChartOptions"
-            [plugins]="pieChartPlugins"
-            [legend]="pieChartLegend">
-        </canvas>
+  <section class="home__statistics">
+    <section class="home__statistics__sessions">
+      <h2 class="home__statistics__sessions-title">Aantal keer de app geopend</h2>
+      <canvas baseChart [datasets]="lineChartDataOpens" [labels]="lineChartLabels" [legend]="lineChartLegend"
+        [chartType]="lineChartType" [plugins]="lineChartPlugins" [options]="lineChartOptions"
+        [colors]="lineChartColors">
+      </canvas>
     </section>
+    <section class="home__statistics__stats">
+      <h2 class="home__statistics__stats-title">Aantal logins in de app</h2>
+      <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [legend]="lineChartLegend"
+        [chartType]="lineChartType" [plugins]="lineChartPlugins" [options]="lineChartOptions"
+        [colors]="lineChartColors">
+      </canvas>
+    </section>
+    <section class="home__statistics__orders">
+      <h2 class="home__statistics__orders-title">
+        Aantal bestellingen uit de app
+      </h2>
+      <canvas baseChart [datasets]="lineChartDataOrders" [labels]="lineChartLabels" [legend]="lineChartLegend"
+        [chartType]="lineChartType" [plugins]="lineChartPlugins" [options]="lineChartOptions"
+        [colors]="lineChartColors"></canvas>
+    </section>
+  </section>
+  <section class="home__other">
+    <section class="home__other__notifications">
+      <h2 class="home__other__notifications-title">Stuur notificatie</h2>
+      <button (click)="switchNotificationOnePerson()" class="home__other__notifications__switch__onePerson"
+        id="switchButtonOnePerson">Een
+        persoon</button>
+      <button (click)="switchNotificationEveryone()" [disabled]="isDisabled"
+        class="home__other__notifications__switch__everyone" id="switchButtonEveryone">Iedereen</button>
+      <div class="home__other__notifications__single" id="onePersonNotifications">
+        <input type="text" id="search" class="input__default home__other__notifications__single-input-form-inputfield"
+          (click)="startFilter()">
+        <i-feather name="search" id="icon_search"></i-feather>
+        <div class="home__other__notifications__single-list" id="list">
+          <button *ngFor="let name of globals.notification_used_list"
+            (click)="selectUser( name.id, name.name, name.email, name.tokens)" id="userButton{{name.id}}">
+            <h1>{{ name.name }}</h1>
+            {{ name.email }}
+          </button>
+        </div>
+        <div class="home__other__notifications__single-input" id="home__other-input">
+          <form name="notification" class="home__other__notifications__single-input-form">
+            <label for="title" class="text__label home__other__notifications__single-input-form-label">
+              <h1>Titel:</h1>
+            </label>
+            <br>
+            <input name="title" type="text" id="title"
+              class="input__default home__other__notifications__single-input-form-inputfield" required>
+            <br>
+            <label for="description" class="text__label home__other__notifications__single-input-form-label">
+              <h1>Beschrijving:</h1>
+            </label>
+            <br>
+            <input name="description" type="text" id="description"
+              class="input__default home__other__notifications__single-input-form-inputfield" required>
+            <br>
+            <input type="submit"
+              class="btn__regular login-form__form-submit home__other__notifications__single-input-form-submit"
+              (click)="sendNotification()" id="send">
+          </form>
+        </div>
+        <button class="home__other__notifications__single-next" (click)="userSelected()" id="next">
+          <h1>Volgende</h1>
+        </button>
+      </div>
+      <div class="home__other__notifications__everyone" id="everyoneNotification">
+        <form name="notification" class="home__other__notifications__single-input-form">
+          <label for="title" class="text__label home__other__notifications__single-input-form-label">
+            <h1>Titel:</h1>
+          </label>
+          <br>
+          <input name="title" type="text" id="titleEveryone"
+            class="input__default home__other__notifications__single-input-form-inputfield" required>
+          <br>
+          <label for="description" class="text__label home__other__notifications__single-input-form-label">
+            <h1>Beschrijving:</h1>
+          </label>
+          <br>
+          <input name="description" type="text" id="descriptionEveryone"
+            class="input__default home__other__notifications__single-input-form-inputfield" required>
+          <br>
+          <button class="btn__regular login-form__form-submit home__other__notifications__single-input-form-submit"
+            (click)="sendNotificationToEveryone()" id="sendToEveryone">Verzenden</button>
+        </form>
+      </div>
+    </section>
+    <section class="home__other__quiz">
+      <h2 class="home__other__quiz-title">Verander quiz</h2>
+      <div class="home__other__quiz__choose">
+        <h3 class="home__other__quiz__choose-title">Bestaande Quizen:</h3>
+        <div class="home__other__quiz__choose-list">
+          <div class="home__other__quiz__choose-list-item" *ngFor="let quiz of globals.quiz_list_original"
+            id="quizDiv{{quiz.id}}" (click)="onRadioButtonClicked(quiz.title)">
+            <input type="radio" name="quizChooser" id="quizRadioButton{{quiz.url}}"
+              class="home__other__quiz__choose-list-item-input" [checked]="quiz.status === true">
+            <div class=" home__other__quiz__choose-list-item-text">
+              <h2 class="home__other__quiz__choose-list-item-text-title">{{quiz.title}}</h2>
+              <p class="home__other__quiz__choose-list-item-text-link">{{quiz.url}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="home__other__quiz__choose__button">
+          <button class="home__other__quiz__choose__button-button" (click)="selectQuiz()">Selecteer</button>
+        </div>
+      </div>
+      <div class="home__other__quiz__create">
+        <h2 class="home__other__quiz__create-title">Maak een nieuwe Quiz</h2>
+        <div class="home__other__quiz__create__input">
+          <div class="home__other__quiz__create__input-title">
+            <label class="home__other__quiz__create__input-title-text text__label">Titel:</label>
+            <br>
+            <input type="text" class="home__other__quiz__create__input-title-field input__default" id="quizTitleInput">
+          </div>
+
+          <div class="home__other__quiz__create__input-link">
+            <label class="home__other__quiz__create__input-link-text text__label">Link:</label>
+            <br>
+            <input type="text" class="home__other__quiz__create__input-link-field input__default" id="quizLinkInput">
+          </div>
+
+          <div class="hoome__other__quiz__create__input-button">
+            <button (click)="createNewQuiz()" class="home__other__quiz__create__input-button-button">Toevoegen</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
 </main>

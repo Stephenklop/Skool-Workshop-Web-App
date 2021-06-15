@@ -17,6 +17,8 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
 import { CustomersComponent } from './pages/customers/customers.component';
 import { DatatabletestComponent } from './test/datatabletest/datatabletest.component';
 import { CustomerDetailsComponent } from './pages/customer-details/customer-details.component';
+import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
+import { GoogleAnalyticsService } from './services/google-analytics.service';
 
 @NgModule({
   declarations: [
@@ -37,11 +39,14 @@ import { CustomerDetailsComponent } from './pages/customer-details/customer-deta
     AppRoutingModule,
     IconsModule,
     ChartsModule,
-    DataTablesModule
+    DataTablesModule,
+    HttpClientModule
   ],
   providers: [
-    { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR'},
-    Globals
+    { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' },
+    Globals,
+    HttpClient,
+    GoogleAnalyticsService
   ],
   bootstrap: [AppComponent]
 })

@@ -47,7 +47,7 @@
 </nav> -->
 <section class="menubar">
     <nav class="menubar__menu">
-        <ul class="menubar__menu-list">
+        <!-- <ul class="menubar__menu-list">
             <li class="menubar__menu-list--item">
                 <a routerLink="/home" href="#" class="menubar__menu-list--item__link">
                     <i-feather name="bar-chart"></i-feather>
@@ -78,12 +78,16 @@
                     <i-feather name="users"></i-feather>
                 </a>
             </li>
-        </ul>
+        </ul> -->
+        <div class="menubar__menu-left">
+            <h3 class="menubar__menu-left__welcome--message">Goededag</h3>
+            <h3 class="menubar__menu-left__welcome--name" id="menuWelcomeName">John Doe</h3>
+        </div>
         <div class="menubar__menu-right">
             <i-feather name="bell"></i-feather>
             <div class="menubar__menu-right__name">
-                <h6 class="menubar__menu-right__name--name">John Doe</h6>
-                <p class="menubar__menu-right__name--function">Admin</p>
+                <h6 class="menubar__menu-right__name--name" id="menuAccountName">John Doe</h6>
+                <p class="menubar__menu-right__name--function" id="menuAccountRole">Admin</p>
             </div>
         </div>
     </nav>
