@@ -62,122 +62,127 @@
       margin: 2rem;
       display: flex;
       flex-wrap: wrap;
-      overflow: scroll;
-      overflow-y: auto;
-      justify-content: center;
 
+      &__header {
+        display: flex;
+        flex-wrap: nowrap;
+        width: 100%;
+        height: 4rem;
 
-      &-title {
-        padding-bottom: 2.5rem;
-        font-size: 2.5rem;
-        width: 60%;
+        &-title {
+          padding-bottom: 2.5rem;
+          font-size: 2.5rem;
+          width: 30%;
+        }
+  
+        &-search {
+          display: flex;
+          flex-wrap: wrap;
+          width: 70%;
+          margin-left: 2rem;
+  
+          &-bar{
+            width: 90%;
+            background-color: #EFEFEF;
+            border-radius: 0px 5px 5px 0px;
+            border: none;
+            height: 4rem;
+          }
+  
+          &-icon{
+            width: 10%;
+            height: 4rem;
+            background-color: #EFEFEF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px 0px 0px 5px;
+            &-feather {
+              width: 2rem;
+            }
+          }
+        }
       }
 
+      &__content{
+        display: flex;
+        flex-wrap: nowrap;
+        width: 100%;
+        justify-content: center;
 
-      &__switch {
-        width: 20%;
-        background-color: $main-color;
-        border-radius: 1rem;
-        height: 4rem;
-        color: white;
-        border: none;
+        &__category{
+          width: 30%;
+          justify-self: flex-start;
+          margin-top: 2rem;
 
-        &__everyone {
-          background-color: #EFEFEF;
-          color: #707070;
-          width: 20%;
-          border-radius: 0 1rem 1rem 0;
-          height: 4rem;
-          border: none;
-          
+          &-button{
+            background-color: #EFEFEF;
+            margin-bottom: 1.5rem;
+            border: none;
+            color: black;
+            border-radius: 5px;
+            height: 4rem;
+            width: 75%;
+            font-weight: bold;
+          }
         }
 
-        &__onePerson {
-          width: 20%;
-          background-color: $main-color;
-          border-radius: 1rem 0 0 1rem;
-          height: 4rem;
-          color: white;
-          border: none;
+        &__notification{
+          width: 70%;
+          margin-left: 2rem;
+          &__chooser{
+            width: 100%;
+            height: 20rem;
+            overflow-y: scroll;
+            display: flex;
+            flex-wrap: wrap;
+            &-buttons{
+              width: 50%;
+              &-single{
+                width: 90%;
+                height: 9rem;
+                padding: 1rem;
+                margin-left: 1rem;
+                margin-top: 2rem;
+                background-color: #FFF;
+                color: black;
+                border: 1px #707070 solid;
+                border-radius: 5px;
+              }
+            }
+          }
+
+          &__form{
+            &-input{
+              display: flex;
+              flex-wrap: wrap;
+              &-title{
+                width: 51%;
+                border: none;
+                border-radius: 5px;
+                color: black;
+                background-color: #EFEFEF;
+              }
+              &-url{
+                width: 51%;
+                border: none;
+                border-radius: 5px;
+                color: black;
+                background-color: #EFEFEF;
+              }
+              &-message{
+                width: 51%;
+                border: none;
+                border-radius: 5px;
+                color: black;
+                background-color: #EFEFEF;
+              }
+            }
+          }
+
         }
       }
       
-
-
-      &__single{
-        display: flex;
-        flex-wrap: wrap;
-        overflow: scroll;
-        overflow-y: auto;
-        justify-content: center;
-        &-list {
-          width: 100%;
-          height: 20rem;
-          display: flex;
-          flex-wrap: wrap;
-          overflow: scroll;
-          overflow-y: auto;
-          justify-content: center;
-  
-          button {
-            width: 35%;
-            height: 6rem;
-            border-radius: 1rem;
-            color: #707070;
-            margin: 1rem;
-            overflow: scroll;
-            border: 2px solid #707070;
-          }
-          &-name{
-            font-weight: bolder;
-            color: black;
-          }
-          &-email{
-            font-weight: lighter;
-            color: black;
-          }
-        }
-  
-        &-input {
-          display: none;
-          &-form{
-            display: flex;
-            flex-wrap: wrap;
-            overflow: scroll;
-            overflow-y: auto;
-            justify-content: center;
-            &-inputfield{
-             margin: 0.5rem;
-             margin-top: 0;
-             width: 51%;
-           }
-           &-label{
-             margin-top: 1rem;
-             width: 50%;
-           }
-           &-submit{
-             margin-top: 2rem;
-             width: 50%;
-           }
-          }
-        }
-  
-        &-next {
-          background-color: $main-color;
-          border: #707070;
-          border-radius: 1rem;
-          width: 50%;
-          height: 4rem;
-          color: white;
-          margin-top: 2rem;
-        }
-
-      }
-
-      &__everyone {
-        display: none;
-      }
-
     }
 
     &__quiz {
@@ -290,4 +295,10 @@
       }
     }
   }
+}
+
+.active{
+  background-color: $main-color;
+  border: none;
+  color: white;
 }

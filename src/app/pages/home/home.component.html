@@ -31,67 +31,48 @@
   </section>
   <section class="home__other">
     <section class="home__other__notifications">
-      <h2 class="home__other__notifications-title">Stuur notificatie</h2>
-      <button (click)="switchNotificationOnePerson()" class="home__other__notifications__switch__onePerson"
-        id="switchButtonOnePerson">Een
-        persoon</button>
-      <button (click)="switchNotificationEveryone()" [disabled]="isDisabled"
-        class="home__other__notifications__switch__everyone" id="switchButtonEveryone">Iedereen</button>
-      <div class="home__other__notifications__single" id="onePersonNotifications">
-        <input type="text" id="search" class="input__default home__other__notifications__single-input-form-inputfield"
-          (click)="startFilter()">
-        <i-feather name="search" id="icon_search"></i-feather>
-        <div class="home__other__notifications__single-list" id="list">
-          <button *ngFor="let name of globals.notification_used_list"
-            (click)="selectUser( name.id, name.name, name.email, name.tokens)" id="userButton{{name.id}}">
-            <h1>{{ name.name }}</h1>
-            {{ name.email }}
-          </button>
+      <div class="home__other__notifications__header">
+        <h2 class="home__other__notifications__header-title">Stuur notificatie</h2>
+        <div class="home__other__notifications__header-search">
+          <div class="home__other__notifications__header-search-icon">
+            <i-feather name="search" id="icon_search" class="home__other__notifications__header-search-icon-feather">
+            </i-feather>
+          </div>
+          <input type="text" id="search" class="home__other__notifications__header-search-bar" (click)="startFilter()">
         </div>
-        <div class="home__other__notifications__single-input" id="home__other-input">
-          <form name="notification" class="home__other__notifications__single-input-form">
-            <label for="title" class="text__label home__other__notifications__single-input-form-label">
-              <h1>Titel:</h1>
-            </label>
-            <br>
-            <input name="title" type="text" id="title"
-              class="input__default home__other__notifications__single-input-form-inputfield" required>
-            <br>
-            <label for="description" class="text__label home__other__notifications__single-input-form-label">
-              <h1>Beschrijving:</h1>
-            </label>
-            <br>
-            <input name="description" type="text" id="description"
-              class="input__default home__other__notifications__single-input-form-inputfield" required>
-            <br>
-            <input type="submit"
-              class="btn__regular login-form__form-submit home__other__notifications__single-input-form-submit"
-              (click)="sendNotification()" id="send">
-          </form>
-        </div>
-        <button class="home__other__notifications__single-next" (click)="userSelected()" id="next">
-          <h1>Volgende</h1>
-        </button>
       </div>
-      <div class="home__other__notifications__everyone" id="everyoneNotification">
-        <form name="notification" class="home__other__notifications__single-input-form">
-          <label for="title" class="text__label home__other__notifications__single-input-form-label">
-            <h1>Titel:</h1>
-          </label>
-          <br>
-          <input name="title" type="text" id="titleEveryone"
-            class="input__default home__other__notifications__single-input-form-inputfield" required>
-          <br>
-          <label for="description" class="text__label home__other__notifications__single-input-form-label">
-            <h1>Beschrijving:</h1>
-          </label>
-          <br>
-          <input name="description" type="text" id="descriptionEveryone"
-            class="input__default home__other__notifications__single-input-form-inputfield" required>
-          <br>
-          <button class="btn__regular login-form__form-submit home__other__notifications__single-input-form-submit"
-            (click)="sendNotificationToEveryone()" id="sendToEveryone">Verzenden</button>
-        </form>
+      <div class="home__other__notifications__content">
+        <div class="home__other__notifications__content__category">
+          <Button class="home__other__notifications__content__category-button active" id="switchButtonEveryone"
+            (click)="switchNotificationOnePerson()">Iedereen</Button>
+          <Button class="home__other__notifications__content__category-button" (click)="switchNotificationEveryone()"
+            id="switchButtonOnePerson">Een persoon</Button>
+        </div>
+        <div class="home__other__notifications__content__notification">
+          <div class="home__other__notifications__content__notification__chooser">
+            <div class="home__other__notifications__content__notification__chooser-buttons"
+              *ngFor="let user of globals.notification_used_list" id="userButton{{user.id}}">
+              <Button id="home__other__notifications__content__notification__chooser-buttons-{{user.id}}"
+                class="home__other__notifications__content__notification__chooser-buttons-single"
+                (click)="onePersonOnClick(user.id)">
+                {{ user.name }}
+                <br>
+                {{ user.email }}
+              </Button>
+            </div>
+          </div>
+          <div class="home__other__notifications__content__notification__form">
+            <div class="home__other__notifications__content__notification__form-input">
+              <input type="text" id="titleInput"
+                class="home__other__notificatons__content__notification__form-input-title" placeholder="Titel:">
+              <input type="text" id="urlInput" class="home__other__notificatons__content__notification__form-input-url"
+                placeholder="Url:">
+              <input type="text" id="messageInput"
+                class="home__other__notificatons__content__notification__form-input-message"
+                placeholder="Beschrijving:">
+            </div>
+          </div>
+        </div>
       </div>
     </section>
     <section class="home__other__quiz">

@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
-import * as faker from 'faker';
 import {
   Color,
   Label,
   monkeyPatchChartJsLegend,
   monkeyPatchChartJsTooltip,
-  MultiDataSet,
   SingleDataSet,
 } from 'ng2-charts';
 import { Globals } from 'src/globals';
@@ -62,11 +60,6 @@ export class HomeComponent implements OnInit {
     document.getElementById(
       'menuAccountRole'
     )!.textContent = this.globals.user.role;
-    document
-      .getElementById('send')!
-      .addEventListener('click', function (event) {
-        event.preventDefault();
-      });
 
     this.globals.quiz_list_original.forEach((item: any) => {
       console.log(item);
@@ -105,8 +98,7 @@ export class HomeComponent implements OnInit {
   filterList(searchKey: String, testList: any, globals: any) {
     let filteredList: any = [];
     testList.forEach((value: any) => {
-      let name: String = value.name;
-      if (name.toLowerCase().includes(searchKey.toLowerCase())) {
+      if (value.name.toLowerCase().includes(searchKey.toLowerCase()) || value.email.toLowerCase().includes(searchKey.toLowerCase())) {
         filteredList.push(value);
       }
     });
@@ -125,157 +117,25 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  selectUser(id: Number, name: String, email: String, tokens: Array<any>) {
-    console.log(name);
-    console.log(email);
-    this.globals.notification_test_list.forEach(function (value: any) {
-      if (document.getElementById('userButton' + value.id) != null) {
-        document.getElementById(
-          'userButton' + value.id
-        )!.style.backgroundColor = '#f8f8f8';
-        document.getElementById('userButton' + value.id)!.style.color =
-          '#707070';
-        document.getElementById('userButton' + value.id)!.style.border =
-          '2px solid #707070';
+  public selectedUser: any = {};
+
+  onePersonOnClick(id: number) {
+    this.globals.notification_used_list.forEach((value: any) => {
+      if (value.id === id) {
+        this.selectedUser = value;
+        console.log(value)
       }
-    });
-    try {
-      document.getElementById('userButton' + id)!.style.backgroundColor =
-        '#F49700';
-      document.getElementById('userButton' + id)!.style.color = '#fff';
-      document.getElementById('userButton' + id)!.style.border = 'none';
-
-      this.user = { id, name, email, tokens };
-    } catch (e) {
-      console.log(e);
-    }
-    console.log(this.user);
-  }
-
-  userSelected() {
-    console.log('clicked on next');
-    if (this.user != undefined) {
-      document.getElementById('list')!.style.display = 'none';
-      document.getElementById('next')!.style.display = 'none';
-      document.getElementById('search')!.style.display = 'none';
-      document.getElementById('icon_search')!.style.display = 'none';
-      document.getElementById('list')!.style.zIndex = '0';
-      document.getElementById('home__other-input')!.style.display = 'block';
-      document.getElementById('switchButtonEveryone')!;
-      this.isDisabled = true;
-    } else {
-      console.log('geen user geselecteerd');
-    }
-  }
-
-  sendNotification() {
-    let titleInput = <HTMLInputElement>document.getElementById('title');
-    let title: any = titleInput.value;
-    let descriptionInput = <HTMLInputElement>(
-      document.getElementById('description')
-    );
-    let description = descriptionInput.value;
-    console.log(title);
-    console.log(description);
-    this.isDisabled = false;
-
-    if (title != '' && description != '') {
-      console.log(
-        'send notification to: ' +
-        this.user.name +
-        ' (' +
-        this.user.email +
-        ')\n' +
-        'With title: ' +
-        title +
-        '\nand description: ' +
-        description +
-        ';'
-      );
-      this.api.sendNotificationToAccount(description, title, this.user.tokens).subscribe(data => {
-        console.log(data)
-      })
-      this.resetOnePersonNotification();
-    }
-  }
-
-  sendNotificationToEveryone() {
-    let titleInput = <HTMLInputElement>document.getElementById('titleEveryone');
-    let title: any = titleInput.value;
-    let descriptionInput = <HTMLInputElement>(
-      document.getElementById('descriptionEveryone')
-    );
-    let description = descriptionInput.value;
-    console.log(title);
-    console.log(description);
-    this.isDisabled = false;
-
-    if (title != '' && description != '') {
-      this.api.sendNotificationToEveryone(description, title).subscribe(data => {
-        console.log(data)
-      })
-      this.resetOnePersonNotification();
-    }
-  }
-
-  resetOnePersonNotification() {
-    let titleInput = <HTMLInputElement>document.getElementById('title');
-    let title: any = titleInput.value;
-    let descriptionInput = <HTMLInputElement>(
-      document.getElementById('description')
-    );
-    let description = descriptionInput.value;
-
-    this.globals.notification_test_list.forEach(function (value: any) {
-      if (document.getElementById('userButton' + value.id) != null) {
-        document.getElementById(
-          'userButton' + value.id
-        )!.style.backgroundColor = '#f8f8f8';
-        document.getElementById('userButton' + value.id)!.style.color =
-          '#707070';
-        document.getElementById('userButton' + value.id)!.style.border =
-          '2px solid #707070';
-      }
-    });
-
-    titleInput.value = '';
-    descriptionInput.value = '';
-
-    this.user = undefined;
-
-    document.getElementById('home__other-input')!.style.display = 'none';
-    document.getElementById('next')!.style.display = 'block';
-    document.getElementById('search')!.style.display = 'block';
-    document.getElementById('icon_search')!.style.display = 'block';
-    document.getElementById('list')!.style.zIndex = '1';
-    document.getElementById('home__other-input')!.style.zIndex = '1';
-    document.getElementById('list')!.style.display = 'flex';
+    })
   }
 
   switchNotificationEveryone() {
-    document.getElementById('everyoneNotification')!.style.display = 'flex';
-    document.getElementById('onePersonNotifications')!.style.display = 'none';
-    this.notificationToEveryone = true;
-    document.getElementById('switchButtonOnePerson')!.style.background =
-      '#EFEFEF';
-    document.getElementById('switchButtonEveryone')!.style.background =
-      '#F49701';
-    document.getElementById('switchButtonEveryone')!.style.color = '#FFF';
-    document.getElementById('switchButtonOnePerson')!.style.color = '#707070';
+    document.getElementById('switchButtonEveryone')!.classList.remove("active");
+    document.getElementById('switchButtonOnePerson')!.classList.add("active");
   }
 
   switchNotificationOnePerson() {
-    document.getElementById('everyoneNotification')!.style.display = 'none';
-    document.getElementById('onePersonNotifications')!.style.display = 'flex';
-    this.notificationToEveryone = false;
-    this.isDisabled = false;
-    document.getElementById('switchButtonOnePerson')!.style.background =
-      '#F49701';
-    document.getElementById('switchButtonEveryone')!.style.background =
-      '#EFEFEF';
-    document.getElementById('switchButtonEveryone')!.style.color = '#707070';
-    document.getElementById('switchButtonOnePerson')!.style.color = '#FFF';
-    this.resetOnePersonNotification();
+    document.getElementById('switchButtonEveryone')!.classList.add("active");
+    document.getElementById('switchButtonOnePerson')!.classList.remove("active");
   }
 
   public lineChartLabels: Label[] = ['1', '2', '3', '4', '5'];
