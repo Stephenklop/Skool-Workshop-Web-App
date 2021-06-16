@@ -1,75 +1,161 @@
 <app-menubar></app-menubar>
 
-<link href="http://cdn.syncfusion.com/**19.1.0.63**/js/web/flat-azure/ej.web.all.min.css" rel="stylesheet" />
+<link
+  href="http://cdn.syncfusion.com/**19.1.0.63**/js/web/flat-azure/ej.web.all.min.css"
+  rel="stylesheet"
+/>
 <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
-<script src="http://cdn.syncfusion.com/**19.1.0.63**/js/web/ej.web.all.min.js" type="text/javascript"></script>
+<script
+  src="http://cdn.syncfusion.com/**19.1.0.63**/js/web/ej.web.all.min.js"
+  type="text/javascript"
+></script>
 
 <main class="home">
   <section class="home__statistics">
     <section class="home__statistics__sessions">
-      <h2 class="home__statistics__sessions-title">Aantal keer de app geopend</h2>
-      <canvas baseChart [datasets]="lineChartDataOpens" [labels]="lineChartLabels" [legend]="lineChartLegend"
-        [chartType]="lineChartType" [plugins]="lineChartPlugins" [options]="lineChartOptions"
-        [colors]="lineChartColors">
+      <h2 class="home__statistics__sessions-title">
+        Aantal keer de app geopend
+      </h2>
+      <canvas
+        baseChart
+        [datasets]="lineChartDataOpens"
+        [labels]="lineChartLabels"
+        [legend]="lineChartLegend"
+        [chartType]="lineChartType"
+        [plugins]="lineChartPlugins"
+        [options]="lineChartOptions"
+        [colors]="lineChartColors"
+      >
       </canvas>
     </section>
     <section class="home__statistics__stats">
       <h2 class="home__statistics__stats-title">Aantal logins in de app</h2>
-      <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [legend]="lineChartLegend"
-        [chartType]="lineChartType" [plugins]="lineChartPlugins" [options]="lineChartOptions"
-        [colors]="lineChartColors">
+      <canvas
+        baseChart
+        [datasets]="lineChartData"
+        [labels]="lineChartLabels"
+        [legend]="lineChartLegend"
+        [chartType]="lineChartType"
+        [plugins]="lineChartPlugins"
+        [options]="lineChartOptions"
+        [colors]="lineChartColors"
+      >
       </canvas>
     </section>
     <section class="home__statistics__orders">
       <h2 class="home__statistics__orders-title">
         Aantal bestellingen uit de app
       </h2>
-      <canvas baseChart [datasets]="lineChartDataOrders" [labels]="lineChartLabels" [legend]="lineChartLegend"
-        [chartType]="lineChartType" [plugins]="lineChartPlugins" [options]="lineChartOptions"
-        [colors]="lineChartColors"></canvas>
+      <canvas
+        baseChart
+        [datasets]="lineChartDataOrders"
+        [labels]="lineChartLabels"
+        [legend]="lineChartLegend"
+        [chartType]="lineChartType"
+        [plugins]="lineChartPlugins"
+        [options]="lineChartOptions"
+        [colors]="lineChartColors"
+      ></canvas>
     </section>
   </section>
   <section class="home__other">
     <section class="home__other__notifications">
       <div class="home__other__notifications__header">
-        <h2 class="home__other__notifications__header-title">Stuur notificatie</h2>
-        <div class="home__other__notifications__header-search">
+        <h2 class="home__other__notifications__header-title">
+          Stuur notificatie
+        </h2>
+        <div class="home__other__notifications__header-search" id="searchBar">
           <div class="home__other__notifications__header-search-icon">
-            <i-feather name="search" id="icon_search" class="home__other__notifications__header-search-icon-feather">
+            <i-feather
+              name="search"
+              id="icon_search"
+              class="home__other__notifications__header-search-icon-feather"
+            >
             </i-feather>
           </div>
-          <input type="text" id="search" class="home__other__notifications__header-search-bar" (click)="startFilter()">
+          <input
+            type="text"
+            id="search"
+            class="home__other__notifications__header-search-bar"
+            (click)="startFilter()"
+          />
         </div>
       </div>
       <div class="home__other__notifications__content">
         <div class="home__other__notifications__content__category">
-          <Button class="home__other__notifications__content__category-button active" id="switchButtonEveryone"
-            (click)="switchNotificationOnePerson()">Iedereen</Button>
-          <Button class="home__other__notifications__content__category-button" (click)="switchNotificationEveryone()"
-            id="switchButtonOnePerson">Een persoon</Button>
+          <Button
+            class="home__other__notifications__content__category-button active"
+            id="switchButtonEveryone"
+            (click)="switchNotificationOnePerson()"
+            >Iedereen</Button
+          >
+          <Button
+            class="home__other__notifications__content__category-button"
+            (click)="switchNotificationEveryone()"
+            id="switchButtonOnePerson"
+            >Een persoon</Button
+          >
+          <Button
+            class="home__other__notifications__content__category-button"
+            (click)="backToChooser()"
+            id="switchButtonBack"
+            >Terug</Button
+          >
         </div>
         <div class="home__other__notifications__content__notification">
-          <div class="home__other__notifications__content__notification__chooser">
-            <div class="home__other__notifications__content__notification__chooser-buttons"
-              *ngFor="let user of globals.notification_used_list" id="userButton{{user.id}}">
-              <Button id="home__other__notifications__content__notification__chooser-buttons-{{user.id}}"
+          <div
+            class="home__other__notifications__content__notification__chooser"
+            id="notificationChooser"
+          >
+            <div
+              class="home__other__notifications__content__notification__chooser-buttons"
+              *ngFor="let user of globals.notification_used_list"
+              id="userButton{{ user.id }}"
+            >
+              <Button
+                id="home__other__notifications__content__notification__chooser-buttons-{{
+                  user.id
+                }}"
                 class="home__other__notifications__content__notification__chooser-buttons-single"
-                (click)="onePersonOnClick(user.id)">
+                (click)="onePersonOnClick(user.id)"
+              >
                 {{ user.name }}
-                <br>
+                <br />
                 {{ user.email }}
               </Button>
             </div>
           </div>
-          <div class="home__other__notifications__content__notification__form">
-            <div class="home__other__notifications__content__notification__form-input">
-              <input type="text" id="titleInput"
-                class="home__other__notificatons__content__notification__form-input-title" placeholder="Titel:">
-              <input type="text" id="urlInput" class="home__other__notificatons__content__notification__form-input-url"
-                placeholder="Url:">
-              <input type="text" id="messageInput"
-                class="home__other__notificatons__content__notification__form-input-message"
-                placeholder="Beschrijving:">
+          <div
+            class="home__other__notifications__content__notification__form"
+            id="notificationForm"
+          >
+            <div
+              class="home__other__notifications__content__notification__form-input"
+            >
+              <input
+                type="text"
+                id="titleInput"
+                class="home__other__notificatons__content__notification__form-input-title"
+                placeholder="Titel:"
+              />
+              <input
+                type="text"
+                id="urlInput"
+                class="home__other__notificatons__content__notification__form-input-url"
+                placeholder="Url:"
+              />
+              <textarea
+                id="messageInput"
+                placeholder="Beschrijving:"
+                class="home__other__notifications__content__notification__form-input-message"
+              ></textarea>
+
+              <button
+                class="home__other__notifications__content__notification__form-input-send active"
+                id="sendNotification"
+              >
+                Verstuur
+              </button>
             </div>
           </div>
         </div>
@@ -80,37 +166,74 @@
       <div class="home__other__quiz__choose">
         <h3 class="home__other__quiz__choose-title">Bestaande Quizen:</h3>
         <div class="home__other__quiz__choose-list">
-          <div class="home__other__quiz__choose-list-item" *ngFor="let quiz of globals.quiz_list_original"
-            id="quizDiv{{quiz.id}}" (click)="onRadioButtonClicked(quiz.title)">
-            <input type="radio" name="quizChooser" id="quizRadioButton{{quiz.url}}"
-              class="home__other__quiz__choose-list-item-input" [checked]="quiz.status === true">
-            <div class=" home__other__quiz__choose-list-item-text">
-              <h2 class="home__other__quiz__choose-list-item-text-title">{{quiz.title}}</h2>
-              <p class="home__other__quiz__choose-list-item-text-link">{{quiz.url}}</p>
+          <div
+            class="home__other__quiz__choose-list-item"
+            *ngFor="let quiz of globals.quiz_list_original"
+            id="quizDiv{{ quiz.id }}"
+            (click)="onRadioButtonClicked(quiz.title)"
+          >
+            <input
+              type="radio"
+              name="quizChooser"
+              id="quizRadioButton{{ quiz.url }}"
+              class="home__other__quiz__choose-list-item-input"
+              [checked]="quiz.status === true"
+            />
+            <div class="home__other__quiz__choose-list-item-text">
+              <h2 class="home__other__quiz__choose-list-item-text-title">
+                {{ quiz.title }}
+              </h2>
+              <p class="home__other__quiz__choose-list-item-text-link">
+                {{ quiz.url }}
+              </p>
             </div>
           </div>
         </div>
         <div class="home__other__quiz__choose__button">
-          <button class="home__other__quiz__choose__button-button" (click)="selectQuiz()">Selecteer</button>
+          <button
+            class="home__other__quiz__choose__button-button"
+            (click)="selectQuiz()"
+          >
+            Selecteer
+          </button>
         </div>
       </div>
       <div class="home__other__quiz__create">
         <h2 class="home__other__quiz__create-title">Maak een nieuwe Quiz</h2>
         <div class="home__other__quiz__create__input">
           <div class="home__other__quiz__create__input-title">
-            <label class="home__other__quiz__create__input-title-text text__label">Titel:</label>
-            <br>
-            <input type="text" class="home__other__quiz__create__input-title-field input__default" id="quizTitleInput">
+            <label
+              class="home__other__quiz__create__input-title-text text__label"
+              >Titel:</label
+            >
+            <br />
+            <input
+              type="text"
+              class="home__other__quiz__create__input-title-field input__default"
+              id="quizTitleInput"
+            />
           </div>
 
           <div class="home__other__quiz__create__input-link">
-            <label class="home__other__quiz__create__input-link-text text__label">Link:</label>
-            <br>
-            <input type="text" class="home__other__quiz__create__input-link-field input__default" id="quizLinkInput">
+            <label
+              class="home__other__quiz__create__input-link-text text__label"
+              >Link:</label
+            >
+            <br />
+            <input
+              type="text"
+              class="home__other__quiz__create__input-link-field input__default"
+              id="quizLinkInput"
+            />
           </div>
 
           <div class="hoome__other__quiz__create__input-button">
-            <button (click)="createNewQuiz()" class="home__other__quiz__create__input-button-button">Toevoegen</button>
+            <button
+              (click)="createNewQuiz()"
+              class="home__other__quiz__create__input-button-button"
+            >
+              Toevoegen
+            </button>
           </div>
         </div>
       </div>
