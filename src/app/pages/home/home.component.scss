@@ -5,7 +5,7 @@
   padding: 2.5rem;
   width: 100%;
   height: 100%;
-  background-color: #F2F6F9;
+  background-color: #f2f6f9;
 
   &__statistics {
     display: flex;
@@ -74,25 +74,25 @@
           font-size: 2.5rem;
           width: 30%;
         }
-  
+
         &-search {
           display: flex;
           flex-wrap: wrap;
           width: 70%;
           margin-left: 2rem;
-  
-          &-bar{
+
+          &-bar {
             width: 90%;
-            background-color: #EFEFEF;
+            background-color: #efefef;
             border-radius: 0px 5px 5px 0px;
             border: none;
             height: 4rem;
           }
-  
-          &-icon{
+
+          &-icon {
             width: 10%;
             height: 4rem;
-            background-color: #EFEFEF;
+            background-color: #efefef;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -104,19 +104,19 @@
         }
       }
 
-      &__content{
+      &__content {
         display: flex;
         flex-wrap: nowrap;
         width: 100%;
         justify-content: center;
 
-        &__category{
+        &__category {
           width: 30%;
           justify-self: flex-start;
           margin-top: 2rem;
 
-          &-button{
-            background-color: #EFEFEF;
+          &-button {
+            background-color: #efefef;
             margin-bottom: 1.5rem;
             border: none;
             color: black;
@@ -127,24 +127,24 @@
           }
         }
 
-        &__notification{
+        &__notification {
           width: 70%;
           margin-left: 2rem;
-          &__chooser{
+          &__chooser {
             width: 100%;
-            height: 20rem;
+            height: 30rem;
             overflow-y: scroll;
             display: flex;
             flex-wrap: wrap;
-            &-buttons{
+            &-buttons {
               width: 50%;
-              &-single{
+              &-single {
                 width: 90%;
                 height: 9rem;
                 padding: 1rem;
                 margin-left: 1rem;
                 margin-top: 2rem;
-                background-color: #FFF;
+                background-color: #fff;
                 color: black;
                 border: 1px #707070 solid;
                 border-radius: 5px;
@@ -152,37 +152,43 @@
             }
           }
 
-          &__form{
-            &-input{
+          &__form {
+            display: none;
+            &-input {
               display: flex;
               flex-wrap: wrap;
-              &-title{
+              & input {
+                padding-left: 1rem;
                 width: 51%;
+                height: 4rem;
+                margin-top: 2rem;
                 border: none;
                 border-radius: 5px;
                 color: black;
-                background-color: #EFEFEF;
+                background-color: #efefef;
               }
-              &-url{
+              & #messageInput {
+                height: 10rem;
+                text-align: start;
+                padding: 1rem;
                 width: 51%;
+                margin-top: 2rem;
                 border: none;
                 border-radius: 5px;
                 color: black;
-                background-color: #EFEFEF;
+                background-color: #efefef;
               }
-              &-message{
+
+              &-send {
                 width: 51%;
-                border: none;
+                height: 4rem;
+                margin-top: 2rem;
                 border-radius: 5px;
-                color: black;
-                background-color: #EFEFEF;
               }
             }
           }
-
         }
       }
-      
     }
 
     &__quiz {
@@ -197,7 +203,6 @@
       overflow: scroll;
       align-items: baseline;
       align-self: baseline;
-      
 
       &-title {
         padding-bottom: 2.5rem;
@@ -206,45 +211,45 @@
         height: 25%;
       }
 
-      &__choose{
+      &__choose {
         width: 50%;
         display: flex;
         flex-wrap: wrap;
         overflow: scroll;
         align-items: baseline;
 
-        &-title{
+        &-title {
           width: 100%;
           font-size: 2rem;
         }
 
-        &-list{
+        &-list {
           width: 100%;
-          &-item{
-
+          &-item {
             display: flex;
             flex-wrap: wrap;
             overflow: scroll;
             justify-content: left;
             align-items: center;
-            &-input{
+            &-input {
             }
-            :checked{
-              filter:  invert(56%) sepia(25%) saturate(1359%) hue-rotate(13deg) brightness(109%) contrast(102%);
+            :checked {
+              filter: invert(56%) sepia(25%) saturate(1359%) hue-rotate(13deg)
+                brightness(109%) contrast(102%);
               border: none;
             }
-            ::selection{
+            ::selection {
               display: none;
             }
-            &-text{
+            &-text {
               margin-left: 2rem;
-              &-title{
+              &-title {
                 color: #000;
                 width: 100&;
                 font-size: 1.75rem;
                 font-weight: bolder;
               }
-              &-link{
+              &-link {
                 width: 100%;
                 color: #707070;
                 font-size: 1rem;
@@ -253,35 +258,35 @@
           }
         }
 
-        &__button{
+        &__button {
           width: 100%;
-          &-button{
-              background-color: $main-color;
-              border: #707070;
-              border-radius: 1rem;
-              width: 50%;
-              height: 4rem;
-              color: white;
-              margin-top: 2rem;
+          &-button {
+            background-color: $main-color;
+            border: #707070;
+            border-radius: 1rem;
+            width: 50%;
+            height: 4rem;
+            color: white;
+            margin-top: 2rem;
           }
         }
       }
 
-      &__create{
+      &__create {
         width: 50%;
-        &-title{
+        &-title {
           width: 100%;
           font-size: 2rem;
         }
-        &__input{
-          &-title{
+        &__input {
+          &-title {
             margin-top: 1rem;
           }
-          &-link{
+          &-link {
             margin-top: 1rem;
           }
-          &-button{
-            &-button{
+          &-button {
+            &-button {
               background-color: $main-color;
               border: #707070;
               border-radius: 1rem;
@@ -297,7 +302,7 @@
   }
 }
 
-.active{
+.active {
   background-color: $main-color;
   border: none;
   color: white;

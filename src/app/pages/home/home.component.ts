@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit {
     // this.generateFakeData();
     console.log(this.globals.loginAnalytics);
     this.globals.notification_used_list = this.globals.notification_test_list;
-    console.log(this.globals.notification_used_list)
+    console.log(this.globals.notification_used_list);
     document.getElementById(
       'menuWelcomeName'
     )!.textContent = this.globals.user.name;
@@ -72,11 +72,13 @@ export class HomeComponent implements OnInit {
         console.log(radioButton);
         // radioButton.checked(true)
       }
-    })
+    });
 
-    document.getElementById("sendToEveryone")!.addEventListener('click', (event) => {
-      event.preventDefault();
-    })
+    document
+      .getElementById('sendToEveryone')!
+      .addEventListener('click', (event) => {
+        event.preventDefault();
+      });
 
     this.setSessionsPerDeviceCategoryAnalytics();
   }
@@ -98,7 +100,10 @@ export class HomeComponent implements OnInit {
   filterList(searchKey: String, testList: any, globals: any) {
     let filteredList: any = [];
     testList.forEach((value: any) => {
-      if (value.name.toLowerCase().includes(searchKey.toLowerCase()) || value.email.toLowerCase().includes(searchKey.toLowerCase())) {
+      if (
+        value.name.toLowerCase().includes(searchKey.toLowerCase()) ||
+        value.email.toLowerCase().includes(searchKey.toLowerCase())
+      ) {
         filteredList.push(value);
       }
     });
@@ -123,19 +128,31 @@ export class HomeComponent implements OnInit {
     this.globals.notification_used_list.forEach((value: any) => {
       if (value.id === id) {
         this.selectedUser = value;
-        console.log(value)
+        document.getElementById('notificationChooser')!.style.display = 'none';
+        document.getElementById('searchBar')!.style.display = 'none';
+        document.getElementById('notificationForm')!.style.display = 'block';
+        console.log(value);
       }
-    })
+    });
+  }
+
+  backToChooser() {
+    this.selectedUser = {};
+    document.getElementById('notificationChooser')!.style.display = 'flex';
+    document.getElementById('searchBar')!.style.display = 'flex';
+    document.getElementById('notificationForm')!.style.display = 'none';
   }
 
   switchNotificationEveryone() {
-    document.getElementById('switchButtonEveryone')!.classList.remove("active");
-    document.getElementById('switchButtonOnePerson')!.classList.add("active");
+    document.getElementById('switchButtonEveryone')!.classList.remove('active');
+    document.getElementById('switchButtonOnePerson')!.classList.add('active');
   }
 
   switchNotificationOnePerson() {
-    document.getElementById('switchButtonEveryone')!.classList.add("active");
-    document.getElementById('switchButtonOnePerson')!.classList.remove("active");
+    document.getElementById('switchButtonEveryone')!.classList.add('active');
+    document
+      .getElementById('switchButtonOnePerson')!
+      .classList.remove('active');
   }
 
   public lineChartLabels: Label[] = ['1', '2', '3', '4', '5'];
