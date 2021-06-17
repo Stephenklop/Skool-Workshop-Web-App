@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Globals } from 'src/globals';
 import { ChartsModule } from 'ng2-charts';
 import { DataTablesModule } from 'angular-datatables';
+import { GridsterModule } from 'angular-gridster2';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,8 @@ import { DatatabletestComponent } from './test/datatabletest/datatabletest.compo
 import { CustomerDetailsComponent } from './pages/customer-details/customer-details.component';
 import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
 import { GoogleAnalyticsService } from './services/google-analytics.service';
+import { FormsModule } from '@angular/forms';
+import { GridtestComponent } from './components/gridtest/gridtest.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,7 @@ import { GoogleAnalyticsService } from './services/google-analytics.service';
     CustomersComponent,
     DatatabletestComponent,
     CustomerDetailsComponent,
+    GridtestComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,9 @@ import { GoogleAnalyticsService } from './services/google-analytics.service';
     IconsModule,
     ChartsModule,
     DataTablesModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    GridsterModule
   ],
   providers: [
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' },

@@ -1,9 +1,5 @@
 import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {CompactType, DisplayGrid, Draggable, GridsterConfig, GridsterItem, GridType, PushDirections, Resizable} from 'angular-gridster2';
-import { Globals } from 'src/globals';
-import { Router } from '@angular/router';
-import { ApiService } from 'src/app/services/api.service';
-import { AppComponent } from 'src/app/app.component';
 
 interface Safe extends GridsterConfig {
   draggable: Draggable,
@@ -12,37 +8,38 @@ interface Safe extends GridsterConfig {
 }
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  selector: 'app-gridtest',
+  templateUrl: './gridtest.component.html',
+  styleUrls: ['./gridtest.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class HomeComponent implements OnInit {
-  public options!: Safe;
-  public dashboard!: Array<GridsterItem>
+export class GridtestComponent implements OnInit {
+  options!: Safe;
+  dashboard!: Array<GridsterItem>;
 
-  constructor(
-    public router: Router,
-    public globals: Globals,
-    private api: ApiService
-  ) {}
+  constructor() { }
 
   ngOnInit(): void {
-
     this.options = {
       gridType: GridType.Fit,
-      compactType: CompactType.None,
-      margin: 25,
+      compactType: CompactType.CompactLeftAndUp,
+      margin: 10,
+      setGridSize: true,
       outerMargin: true,
+      outerMarginTop: null,
+      outerMarginRight: null,
+      outerMarginBottom: null,
+      outerMarginLeft: null,
+      useTransformPositioning: true,
       mobileBreakpoint: 640,
       minCols: 1,
-      maxCols: 3,
+      maxCols: 100,
       minRows: 1,
-      maxRows: 4,
-      maxItemCols: 4,
+      maxRows: 100,
+      maxItemCols: 100,
       minItemCols: 1,
-      maxItemRows: 4,
+      maxItemRows: 100,
       minItemRows: 1,
       maxItemArea: 2500,
       minItemArea: 1,
@@ -85,12 +82,14 @@ export class HomeComponent implements OnInit {
     this.dashboard = [
       {cols: 2, rows: 1, y: 0, x: 0},
       {cols: 2, rows: 2, y: 0, x: 3, hasContent: true},
-      {cols: 1, rows: 1, y: 0, x: 4},
+      {cols: 1, rows: 1, y: 0, x: 5},
       {cols: 1, rows: 1, y: 2, x: 5},
       {cols: 1, rows: 1, y: 1, x: 0},
       {cols: 1, rows: 1, y: 1, x: 0},
       {cols: 2, rows: 2, y: 3, x: 5, minItemRows: 2, minItemCols: 2, label: 'Min rows & cols = 2'},
       {cols: 2, rows: 2, y: 2, x: 0, maxItemRows: 2, maxItemCols: 2, label: 'Max rows & cols = 2'},
+      {cols: 2, rows: 1, y: 2, x: 2, dragEnabled: true, resizeEnabled: true, label: 'Drag&Resize Enabled'},
+      {cols: 1, rows: 1, y: 2, x: 4, dragEnabled: false, resizeEnabled: false, label: 'Drag&Resize Disabled'},
       {cols: 1, rows: 1, y: 2, x: 6}
     ];
   }

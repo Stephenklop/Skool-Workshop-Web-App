@@ -14,6 +14,7 @@
           placeholder="john@example.com"
           tabindex="1"
           autofocus
+          [(ngModel)]="email"
         />
       </div>
 
@@ -33,10 +34,12 @@
           id="login-password"
           placeholder="********"
           tabindex="2"
+          [(ngModel)]="password"
         />
       </div>
+
       <div class="login-form__popup" id="loginFailedPopUp">
-        <h1 id="loginFailedText">Fout email of wachtwoord!</h1>
+        <h1 id="loginFailedText">Fout email en / of wachtwoord!</h1>
       </div>
 
       <div class="login-form__stayLoggedIn">

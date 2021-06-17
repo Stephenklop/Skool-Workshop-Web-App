@@ -18,12 +18,13 @@
     box-shadow: none;
     padding: 2.5rem;
     background-color: white;
-    border-radius: 1rem;
+    border-radius: .5rem;
 
     &__stayLoggedIn {
       display: flex;
       font-size: 1.4rem;
       margin-top: 2rem;
+      align-items: center;
       &-checkbox {
         background-color: $main-color;
         filter: hue-rotate(187deg);

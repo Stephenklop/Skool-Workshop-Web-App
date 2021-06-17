@@ -14,6 +14,8 @@ export class LoginComponent implements OnInit {
     public router: Router,
     private api: ApiService
   ) { }
+  public email = '';
+  public password = '';
 
   public stayLoggedIn: boolean = false;
   public enableLoginButton: boolean = false;
@@ -49,8 +51,39 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  login() {
-    // document.querySelector('')
+  public login() {
+
+    // Validation patterns
+    let patternEmail = new RegExp('[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$');
+    let patternPassword = new RegExp('(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}');
+
+    // Error
+    let errorMessage = document.getElementById('loginFailedPopUp')!;
+
+    // Check if email is valid
+    if(patternEmail.test(this.email)) {
+
+      // Check if password is valid
+      if(patternPassword.test(this.password)) {
+
+        // Login and receive data from the API
+        this.api.login(this.email, this.password).subscribe(data => {
+
+          console.log(data);
+
+          if(data.result.role === 'administrator') {
+            
+          }
+
+          this.globals.user_details = data;
+        });
+      } else {
+        errorMessage.style.display = "block";
+      }
+    } else {
+      errorMessage.style.display = "block";
+    }
+
     let loader = document.getElementById('loader')!;
     loader.style.display = 'flex';
     let emailInput = <HTMLInputElement>document.getElementById('login-email')!;

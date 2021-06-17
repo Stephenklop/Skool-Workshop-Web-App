@@ -19,4 +19,7 @@ export class Globals {
   loginAnalytics: Array<any> = [];
   orderAnalytics: Array<any> = [];
   appOpenAnalytics: Array<any> = [];
+
+  // New variables
+  user_details = null;
 }
