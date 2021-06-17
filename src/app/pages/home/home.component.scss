@@ -1,5 +1,10 @@
 @import "../../../styles.scss";
 
+.border {
+  border-radius: 0.5rem;
+    border: 0.1rem solid #ebe9f1;
+}
+
 .home {
   margin-top: 7rem;
   padding: 2.5rem;

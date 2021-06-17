@@ -10,18 +10,17 @@ import { AppComponent } from './app.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
-import { TextInputRegularComponent } from './components/text-input-regular/text-input-regular.component';
 import { MenubarComponent } from './components/menubar/menubar.component';
 import { IconsModule } from './icons/icons.module';
-import { AccountComponent } from './pages/account/account.component';
-import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
-import { CustomersComponent } from './pages/customers/customers.component';
-import { DatatabletestComponent } from './test/datatabletest/datatabletest.component';
-import { CustomerDetailsComponent } from './pages/customer-details/customer-details.component';
 import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
 import { GoogleAnalyticsService } from './services/google-analytics.service';
 import { FormsModule } from '@angular/forms';
-import { GridtestComponent } from './components/gridtest/gridtest.component';
+import { LoginStatsComponent } from './widgets/login-stats/login-stats.component';
+import { WidgetParentComponent } from './components/widget-parent/widget-parent.component';
+import { OpenStatsComponent } from './widgets/open-stats/open-stats.component';
+import { OrderStatsComponent } from './widgets/order-stats/order-stats.component';
+import { NotificationsComponent } from './widgets/notifications/notifications.component';
+import { QuizComponent } from './widgets/quiz/quiz.component';
 
 @NgModule({
   declarations: [
@@ -29,14 +28,13 @@ import { GridtestComponent } from './components/gridtest/gridtest.component';
     LoaderComponent,
     HomeComponent,
     LoginComponent,
-    TextInputRegularComponent,
     MenubarComponent,
-    AccountComponent,
-    ForgotPasswordComponent,
-    CustomersComponent,
-    DatatabletestComponent,
-    CustomerDetailsComponent,
-    GridtestComponent,
+    LoginStatsComponent,
+    WidgetParentComponent,
+    OpenStatsComponent,
+    OrderStatsComponent,
+    NotificationsComponent,
+    QuizComponent,
   ],
   imports: [
     BrowserModule,

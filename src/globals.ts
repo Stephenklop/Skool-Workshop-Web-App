@@ -13,7 +13,7 @@ export class Globals {
   quiz_list_original: Array<any> = [];
 
   login_token: String = '';
-  notification_test_list: Array<any> = [];
+  notification_test_list: Array<any> = [{ name: "Bas buijsen", email: "bbuijsen@gmail.com", id: 70 }];
   notification_used_list: Array<any> = [];
 
   loginAnalytics: Array<any> = [];

@@ -1,0 +1,104 @@
+@import "../../../styles.scss";
+.quiz {
+    width: 100%;
+    background-color: white;
+    padding: 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: scroll;
+    align-items: baseline;
+    align-self: baseline;
+    
+
+    &-title {
+        padding-bottom: 2.5rem;
+        font-size: 2.5rem;
+        width: 100%;
+        height: 25%;
+    }
+
+    &__choose{
+        width: 50%;
+        display: flex;
+        flex-wrap: wrap;
+        overflow: scroll;
+        align-items: baseline;
+
+        &-title{
+            width: 100%;
+            font-size: 2rem;
+        }
+
+        &-list{
+            width: 100%;
+            &-item{
+                display: flex;
+                flex-wrap: wrap;
+                overflow: scroll;
+                justify-content: left;
+                align-items: center;
+                :checked{
+                    filter:  invert(56%) sepia(25%) saturate(1359%) hue-rotate(13deg) brightness(109%) contrast(102%);
+                    border: none;
+                }
+                ::selection{
+                    display: none;
+                }
+                &-text{
+                    margin-left: 2rem;
+                    &-title{
+                        color: #000;
+                        width: 100&;
+                        font-size: 1.75rem;
+                        font-weight: bolder;
+                    }
+                    &-link{
+                        width: 100%;
+                        color: #707070;
+                        font-size: 1rem;
+                    }
+                }
+            }
+        }
+
+        &__button{
+            width: 100%;
+            &-button{
+                background-color: $main-color;
+                border: #707070;
+                border-radius: 1rem;
+                width: 50%;
+                height: 4rem;
+                color: white;
+                margin-top: 2rem;
+            }
+        }
+    }
+
+    &__create{
+        width: 50%;
+        &-title{
+            width: 100%;
+            font-size: 2rem;
+        }
+        &__input{
+            &-title{
+                margin-top: 1rem;
+            }
+            &-link{
+                margin-top: 1rem;
+            }
+            &-button{
+                &-button{
+                    background-color: $main-color;
+                    border: #707070;
+                    border-radius: 1rem;
+                    width: 50%;
+                    height: 4rem;
+                    color: white;
+                    margin-top: 2rem;
+                }
+            }
+        }
+    }
+}

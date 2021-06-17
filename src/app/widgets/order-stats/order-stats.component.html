@@ -1,0 +1,8 @@
+<section class="order-stats">
+    <h2 class="order-stats-title">
+        Aantal bestellingen uit de app
+    </h2>
+    <canvas baseChart [datasets]="lineChartDataOrders" [labels]="lineChartLabels" [legend]="lineChartLegend"
+        [chartType]="lineChartType" [plugins]="lineChartPlugins" [options]="lineChartOptions"
+        [colors]="lineChartColors"></canvas>
+</section>

@@ -1,0 +1,58 @@
+<section class="notifications">
+    <section class="notifications__notifications">
+        <div class="notifications__notifications__header">
+            <h2 class="notifications__notifications__header-title">Stuur notificatie</h2>
+            <div class="notifications__notifications__header-search gridster-item-content" id="searchBar">
+                <div class="notifications__notifications__header-search-icon ">
+                    <i-feather name="search" id="icon_search"
+                        class="notifications__notifications__header-search-icon-feather">
+                    </i-feather>
+                </div>
+                <input [(ngModel)]="searchValue" type="text" id="search" (keyup)="filterList()"
+                    class="notifications__notifications__header-search-bar">
+                <p>{{ searchValue }}</p>
+            </div>
+        </div>
+        <div class="notifications__notifications__content gridster-item-content">
+            <div class="notifications__notifications__content__category">
+                <Button class="notifications__notifications__content__category-button active"
+                    (click)="switchNotificationEveryone()" id="switchButtonOnePerson">Een persoon</Button>
+                <Button class="notifications__notifications__content__category-button " id="switchButtonEveryone"
+                    (click)="switchNotificationOnePerson()">Iedereen</Button>
+                <Button class="notifications__notifications__content__category-button-back" (click)="backToChooser()"
+                    id="switchButtonBack">Terug</Button>
+            </div>
+            <div class="notifications__notifications__content__notification">
+                <div class="notifications__notifications__content__notification__chooser" id="chooser">
+                    <div class="notifications__notifications__content__notification__chooser-buttons"
+                        *ngFor="let user of globals.notification_used_list" id="userButton{{user.id}}">
+                        <Button id="notifications__notifications__content__notification__chooser-buttons-{{user.id}}"
+                            class="notifications__notifications__content__notification__chooser-buttons-single"
+                            (click)="onePersonOnClick(user)">
+                            {{ user.name }}
+                            <br>
+                            {{ user.email }}
+                        </Button>
+                    </div>
+                </div>
+                <div class="home__other__notifications__content__notification__form" id="notificationForm">
+                    <div class="home__other__notifications__content__notification__form-input">
+                        <input type="text" id="titleInput"
+                            class="home__other__notificatons__content__notification__form-input-title"
+                            placeholder="Titel:" />
+                        <input type="text" id="urlInput"
+                            class="home__other__notificatons__content__notification__form-input-url"
+                            placeholder="Url:" />
+                        <textarea id="messageInput" placeholder="Beschrijving:"
+                            class="home__other__notifications__content__notification__form-input-message"></textarea>
+
+                        <button class="home__other__notifications__content__notification__form-input-send active"
+                            id="sendNotification">
+                            Verstuur
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

@@ -1,5 +1,5 @@
-import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {CompactType, DisplayGrid, Draggable, GridsterConfig, GridsterItem, GridType, PushDirections, Resizable} from 'angular-gridster2';
+import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { CompactType, DisplayGrid, Draggable, GridsterConfig, GridsterItem, GridType, PushDirections, Resizable } from 'angular-gridster2';
 import { Globals } from 'src/globals';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
     public router: Router,
     public globals: Globals,
     private api: ApiService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
 
@@ -36,10 +36,10 @@ export class HomeComponent implements OnInit {
       margin: 25,
       outerMargin: true,
       mobileBreakpoint: 640,
-      minCols: 1,
-      maxCols: 3,
-      minRows: 1,
-      maxRows: 4,
+      minCols: 3,
+      maxCols: 6,
+      minRows: 2,
+      maxRows: 3,
       maxItemCols: 4,
       minItemCols: 1,
       maxItemRows: 4,
@@ -70,11 +70,11 @@ export class HomeComponent implements OnInit {
       resizable: {
         enabled: true,
       },
-      swap: false,
+      swap: true,
       pushItems: true,
       disablePushOnDrag: false,
       disablePushOnResize: false,
-      pushDirections: {north: true, east: true, south: true, west: true},
+      pushDirections: { north: true, east: true, south: true, west: true },
       pushResizeItems: false,
       displayGrid: DisplayGrid.None,
       disableWindowResize: false,
@@ -83,20 +83,21 @@ export class HomeComponent implements OnInit {
     };
 
     this.dashboard = [
-      {cols: 2, rows: 1, y: 0, x: 0},
-      {cols: 2, rows: 2, y: 0, x: 3, hasContent: true},
-      {cols: 1, rows: 1, y: 0, x: 4},
-      {cols: 1, rows: 1, y: 2, x: 5},
-      {cols: 1, rows: 1, y: 1, x: 0},
-      {cols: 1, rows: 1, y: 1, x: 0},
-      {cols: 2, rows: 2, y: 3, x: 5, minItemRows: 2, minItemCols: 2, label: 'Min rows & cols = 2'},
-      {cols: 2, rows: 2, y: 2, x: 0, maxItemRows: 2, maxItemCols: 2, label: 'Max rows & cols = 2'},
-      {cols: 1, rows: 1, y: 2, x: 6}
+      { cols: 2, rows: 1, y: 0, x: 0, type: "login-stats" },
+      { cols: 2, rows: 1, y: 0, x: 2, type: "open-stats" },
+      { cols: 2, rows: 1, y: 0, x: 4, type: "order-stats" },
+      { cols: 3, rows: 1, y: 1, x: 0, type: "notifications" },
+      { cols: 3, rows: 1, y: 1, x: 4, type: "quiz" },
+      // { cols: 1, rows: 1, y: 1, x: 0 },
+      // { cols: 1, rows: 1, y: 1, x: 0 },
+      // { cols: 2, rows: 2, y: 3, x: 5, minItemRows: 2, minItemCols: 2, label: 'Min rows & cols = 2' },
+      // { cols: 2, rows: 2, y: 2, x: 0, maxItemRows: 2, maxItemCols: 2, label: 'Max rows & cols = 2' },
+      // { cols: 1, rows: 1, y: 2, x: 6 }
     ];
   }
 
   changedOptions(): void {
-    if(this.options.api && this.options.api.optionsChanged) {
+    if (this.options.api && this.options.api.optionsChanged) {
       this.options.api.optionsChanged();
     }
   }
@@ -108,6 +109,6 @@ export class HomeComponent implements OnInit {
   }
 
   addItem(): void {
-    this.dashboard.push({ x: 0, y: 0, cols: 1, rows: 1});
+    this.dashboard.push({ x: 0, y: 0, cols: 1, rows: 1 });
   }
 }

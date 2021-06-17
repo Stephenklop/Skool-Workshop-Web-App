@@ -14,26 +14,11 @@
   &-form {
     max-width: 40rem;
     width: 40rem;
-    border: 0.1rem solid #ebe9f1;
+    border: 0.1rem solid #ebe9f1; 
     box-shadow: none;
     padding: 2.5rem;
     background-color: white;
     border-radius: .5rem;
-
-    &__stayLoggedIn {
-      display: flex;
-      font-size: 1.4rem;
-      margin-top: 2rem;
-      align-items: center;
-      &-checkbox {
-        background-color: $main-color;
-        filter: hue-rotate(187deg);
-      }
-
-      &-text {
-        margin-left: 1rem;
-      }
-    }
 
     &__popup {
       display: none;

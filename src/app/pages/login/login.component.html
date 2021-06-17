@@ -6,58 +6,27 @@
     <form class="login-form__form" method="false">
       <div class="login-form__form-group">
         <label for="login-email" class="text__label">Email</label>
-        <input
-          class="input__default login-form__form-control"
-          type="email"
-          name="login-email"
-          id="login-email"
-          placeholder="john@example.com"
-          tabindex="1"
-          autofocus
-          [(ngModel)]="email"
-        />
+        <input class="input__default login-form__form-control" type="email" name="login-email" id="login-email"
+          placeholder="john@example.com" tabindex="1" autofocus [(ngModel)]="email"
+          (input)="email !== '' ? enableLoginButton = false : enableLoginButton = true" />
       </div>
 
       <div class="login-form__form-group">
         <div class="login-form__form-group-box">
           <label for="login-password" class="text__label">Wachtwoord</label>
-          <a
-            routerLink="/forgot-password"
-            class="login-form__form-group-box__forgotpassword"
-            >Forgot Password?</a
-          >
+          <a routerLink="/forgot-password" class="login-form__form-group-box__forgotpassword">Forgot Password?</a>
         </div>
-        <input
-          class="input__default login-form__form-control"
-          type="password"
-          name="login-password"
-          id="login-password"
-          placeholder="********"
-          tabindex="2"
-          [(ngModel)]="password"
-        />
+        <input class="input__default login-form__form-control" type="password" name="login-password" id="login-password"
+          placeholder="********" tabindex="2" [(ngModel)]="password"
+          (input)="password !== '' ? enableLoginButton = false : enableLoginButton = true" />
       </div>
 
-      <div class="login-form__popup" id="loginFailedPopUp">
+      <div class="login-form__popup" id="loginFailedPopUp" [hidden]="error">
         <h1 id="loginFailedText">Fout email en / of wachtwoord!</h1>
       </div>
 
-      <div class="login-form__stayLoggedIn">
-        <input
-          type="checkbox"
-          class="login-form__stayLoggedIn-checkbox"
-          (click)="changeStayLoggedIn()"
-          id="stayLoggedIn"
-        />
-        <p class="login-form__stayLoggedIn-text">Ingelogd blijven</p>
-      </div>
-
-      <button
-        (click)="login()"
-        class="btn__regular login-form__form-submit"
-        type="button"
-        [disabled]="enableLoginButton == false"
-      >
+      <button (click)="login()" class="btn__regular login-form__form-submit" type="button"
+        [disabled]="enableLoginButton">
         Log In
       </button>
     </form>

@@ -1,18 +1,11 @@
 <app-menubar></app-menubar>
 
 <section class="grid">
-  <gridster [options]="options">
-      <gridster-item [item]="item" *ngFor="let item of dashboard">
-        <!-- <div class="button-holder">
-          <div class="gridster-item-content" *ngIf="item.hasContent">
-            <div class="stuff">
-              <span>Some content to select and click without dragging the widget</span>
-              <a href="https://www.google.com" target="_blank">Link to Google</a>
-            </div>
-          </div>
-        </div> -->
-      </gridster-item>
-    </gridster>
+  <gridster [options]="options" style="background-color: #F2F6F9;">
+    <gridster-item class="border" [item]="item" *ngFor="let item of dashboard">
+      <app-widget-parent [widget]="item"></app-widget-parent>
+    </gridster-item>
+  </gridster>
 </section>
 
 <!-- <link

@@ -26,12 +26,12 @@ export class ApiService {
 
   getAllCustomers(): Observable<any> {
     this.token = new String("Bearer " + this.globals.login_token);
-    return this.http.get(this.apiUrl + `/customer`, {
+    return this.http.get(this.apiUrl + `/webapp/customer`, {
       headers: new HttpHeaders().set('Authorization', String(this.token))
     });
   }
 
-  createNewQuiz(title: string, link: String) {
+  createNewQuiz(title: String, link: String) {
     return this.http.post(this.apiUrl + `/quiz`, {
       title: title,
       url: link,
