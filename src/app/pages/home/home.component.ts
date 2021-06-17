@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
       minCols: 3,
       maxCols: 6,
       minRows: 2,
-      maxRows: 3,
+      maxRows: 2,
       maxItemCols: 4,
       minItemCols: 1,
       maxItemRows: 4,
@@ -65,10 +65,10 @@ export class HomeComponent implements OnInit {
       disableScrollVertical: true,
       disableScrollHorizontal: true,
       draggable: {
-        enabled: true,
+        enabled: false,
       },
       resizable: {
-        enabled: true,
+        enabled: false,
       },
       swap: true,
       pushItems: true,
@@ -77,13 +77,13 @@ export class HomeComponent implements OnInit {
       pushDirections: { north: true, east: true, south: true, west: true },
       pushResizeItems: false,
       displayGrid: DisplayGrid.None,
-      disableWindowResize: false,
+      disableWindowResize: true,
       disableWarnings: false,
       scrollToNewItems: false
     };
 
     this.dashboard = [
-      { cols: 2, rows: 1, y: 0, x: 0, type: "login-stats" },
+      { cols: 2, rows: 1, y: 0, x: 0, type: "login-stats"},
       { cols: 2, rows: 1, y: 0, x: 2, type: "open-stats" },
       { cols: 2, rows: 1, y: 0, x: 4, type: "order-stats" },
       { cols: 3, rows: 1, y: 1, x: 0, type: "notifications" },
