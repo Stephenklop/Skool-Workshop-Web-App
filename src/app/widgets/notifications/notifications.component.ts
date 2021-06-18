@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { filter } from 'rxjs/operators';
+import { ApiService } from 'src/app/services/api.service';
 import { Globals } from 'src/globals';
 
 @Component({
@@ -10,7 +11,7 @@ import { Globals } from 'src/globals';
 export class NotificationsComponent implements OnInit {
   @Input() widget: any;
 
-  constructor(public globals: Globals, private changeDetection: ChangeDetectorRef) { }
+  constructor(public globals: Globals, private api: ApiService, private changeDetection: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.globals.notification_used_list = this.globals.notification_test_list;
@@ -23,6 +24,10 @@ export class NotificationsComponent implements OnInit {
   public user: any = undefined;
   public notificationToEveryone: boolean = false;
   public isDisabled: boolean = false;
+
+  public titleValue: String = "";
+  public urlValue: String = "";
+  public descValue: String = "";
 
   filterList() {
     let filteredList: any = [];
@@ -40,6 +45,7 @@ export class NotificationsComponent implements OnInit {
   }
 
   onePersonOnClick(value: any) {
+    console.log(value);
     this.selectedUser = value;
     this.showForm();
     document.getElementById('switchButtonBack')!.style.display = 'block';
@@ -56,6 +62,7 @@ export class NotificationsComponent implements OnInit {
     console.log("naar een persoon")
     document.getElementById('switchButtonEveryone')!.classList.add("active");
     document.getElementById('switchButtonOnePerson')!.classList.remove("active");
+    this.notificationToEveryone = true;
     this.showForm();
   }
 
@@ -72,4 +79,46 @@ export class NotificationsComponent implements OnInit {
     document.getElementById('notificationForm')!.style.display = 'block';
   }
 
+  sendNotification() {
+    this.isDisabled = false;
+
+    // Send notification to everyone
+    if(this.notificationToEveryone) {
+      this.isDisabled = false;
+
+      if (this.titleValue != '' && this.descValue != '') {
+        this.api.sendNotificationToEveryone(this.descValue, this.titleValue).subscribe(data => {
+          console.log(data)
+        })
+        this.resetForm();
+      }
+
+      // Send notifications to specific person
+    } else {
+      if (this.titleValue != '' && this.descValue != '') {
+        console.log(
+          'send notification to: ' +
+          this.selectedUser.name +
+          ' (' +
+          this.selectedUser.email +
+          ')\n' +
+          'With title: ' +
+          this.titleValue +
+          '\nand description: ' +
+          this.descValue +
+          ';'
+        );
+        this.api.sendNotificationToAccount(this.descValue, this.titleValue, this.selectedUser.tokens).subscribe(data => {
+          console.log(data)
+        })
+        this.resetForm();
+      }
+    }
+  }
+
+  resetForm() {
+    this.titleValue = '';
+    this.urlValue = '';
+    this.descValue = '';
+  }
 }

@@ -92,29 +92,31 @@ export class LoginComponent implements OnInit {
     return new Promise((res, rej) => {
       this.api.getAllCustomers().subscribe((data) => {
 
+        console.log(data);
+
         if (data.error) {
           rej(data.error);
         } else {
           let userList: any = [];
           data.result.forEach((element: any) => {
 
-            const name = element.first_name + ' ' + element.last_name;
-            const email = element.email;
-            const id = element.id;
-            userList.push({ name: name, email: email, id: id });
-            // console.log(element.meta_data);
-            // console.log(element.meta_data.key);
-            // element.meta_data.forEach((metaData: any) => {
-            //   if (metaData.key === "_firebase_tokens") {
-            //     if (metaData.value.length > 0) {
-            //       const tokens: Array<any> = metaData.value
-            //       const name = element.first_name + ' ' + element.last_name;
-            //       const email = element.email;
-            //       const id = element.id;
-            //       userList.push({ name: name, email: email, id: id, tokens: tokens });
-            //     }
-            //   }
-            // });
+            // const name = element.first_name + ' ' + element.last_name;
+            // const email = element.email;
+            // const id = element.id;
+            // userList.push({ name: name, email: email, id: id });
+            console.log(element.meta_data);
+            console.log(element.meta_data.key);
+            element.meta_data.forEach((metaData: any) => {
+              if (metaData.key === "_firebase_tokens") {
+                if (metaData.value.length > 0) {
+                  const tokens: Array<any> = metaData.value
+                  const name = element.first_name + ' ' + element.last_name;
+                  const email = element.email;
+                  const id = element.id;
+                  userList.push({ name: name, email: email, id: id, tokens: tokens });
+                }
+              }
+            });
           });
           this.globals.notification_test_list = userList;
           res(data.result);

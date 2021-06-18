@@ -29,6 +29,9 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if(this.globals.currentlyLoggedIn === false) {
+      this.router.navigate(['']);
+    }
 
     this.options = {
       gridType: GridType.Fit,

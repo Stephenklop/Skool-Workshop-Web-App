@@ -10,7 +10,6 @@
                 </div>
                 <input [(ngModel)]="searchValue" type="text" id="search" (keyup)="filterList()"
                     class="notifications__notifications__header-search-bar">
-                <p>{{ searchValue }}</p>
             </div>
         </div>
         <div class="notifications__notifications__content gridster-item-content">
@@ -37,16 +36,20 @@
                 </div>
                 <div class="home__other__notifications__content__notification__form" id="notificationForm">
                     <div class="home__other__notifications__content__notification__form-input">
-                        <input type="text" id="titleInput"
+                        <input type="text"
                             class="home__other__notificatons__content__notification__form-input-title"
-                            placeholder="Titel:" />
-                        <input type="text" id="urlInput"
+                            placeholder="Titel:"
+                            [(ngModel)]="titleValue" />
+                        <input type="text"
                             class="home__other__notificatons__content__notification__form-input-url"
-                            placeholder="Url:" />
+                            placeholder="Url:"
+                            [(ngModel)]="urlValue" />
                         <textarea id="messageInput" placeholder="Beschrijving:"
-                            class="home__other__notifications__content__notification__form-input-message"></textarea>
+                            class="home__other__notifications__content__notification__form-input-message"
+                            [(ngModel)]="descValue">
+                        </textarea>
 
-                        <button class="home__other__notifications__content__notification__form-input-send active"
+                        <button (click)="sendNotification()" class="home__other__notifications__content__notification__form-input-send active"
                             id="sendNotification">
                             Verstuur
                         </button>

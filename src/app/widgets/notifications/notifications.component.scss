@@ -95,6 +95,7 @@
                     height: 100%;
                     overflow: scroll;
                     display: flex;
+                    flex-wrap: wrap;
 
                     &-buttons{
                         width: 50%;
