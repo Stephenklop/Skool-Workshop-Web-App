@@ -95,6 +95,7 @@ export class NotificationsComponent implements OnInit {
 
       // Send notifications to specific person
     } else {
+      console.log("Naar 1 persoon");
       if (this.titleValue != '' && this.descValue != '') {
         console.log(
           'send notification to: ' +

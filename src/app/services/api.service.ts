@@ -32,10 +32,13 @@ export class ApiService {
   }
 
   createNewQuiz(title: String, link: String) {
+    this.token = new String("Bearer " + this.globals.login_token);
     return this.http.post(this.apiUrl + `/quiz`, {
       title: title,
       url: link,
-      status: false
+      status: false,
+    }, {
+      headers: new HttpHeaders().set('Authorization', String(this.token))
     }).pipe(catchError(error => {
       console.log(error)
       return ([{ error: error }]);

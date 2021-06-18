@@ -10,7 +10,7 @@ export class Globals {
   page_login_active: boolean = true;
   page_forgotpass_active: boolean = false;
 
-  quiz_list_original: Array<any> = [];
+  quiz_list_original: any = [];
 
   login_token: String = '';
   notification_test_list: Array<any> = [{ name: "Bas buijsen", email: "bbuijsen@gmail.com", id: 70 }];

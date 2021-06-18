@@ -2,8 +2,8 @@
     <h2 class="quiz-title">Verander quiz</h2>
     <div class="quiz__choose gridster-item-content">
         <h3 class="quiz__choose-title">Bestaande Quizen:</h3>
-        <div class="quiz__choose-list">
-            <div class="quiz__choose-list-item" *ngFor="let quiz of globals.quiz_list_original" id="quizDiv{{quiz.id}}"
+        <div class="quiz__choose-list" *ngIf="quizes">
+            <div class="quiz__choose-list-item" *ngFor="let quiz of quizes" id="quizDiv{{quiz.id}}"
                 (click)="titleChecked = quiz.title">
                 <input type="radio" name="quizChooser" id="quizRadioButton{{quiz.url}}"
                     class="quiz__choose-list-item-input" [checked]="quiz.status === true">
@@ -23,13 +23,13 @@
             <div class="quiz__create__input-title">
                 <label class="quiz__create__input-title-text text__label">Titel:</label>
                 <br>
-                <input type="text" class="quiz__create__input-title-field input__default" id="quizTitleInput">
+                <input type="text" class="quiz__create__input-title-field input__default" id="quizTitleInput" [(ngModel)]="titleValue">
             </div>
 
             <div class="quiz__create__input-link">
                 <label class="quiz__create__input-link-text text__label">Link:</label>
                 <br>
-                <input type="text" class="quiz__create__input-link-field input__default" id="quizLinkInput">
+                <input type="text" class="quiz__create__input-link-field input__default" id="quizLinkInput" [(ngModel)]="linkValue">
             </div>
 
             <div class="hoome__other__quiz__create__input-button">

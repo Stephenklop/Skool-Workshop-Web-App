@@ -70,9 +70,8 @@ export class LoginComponent implements OnInit {
               id: data.result.id,
             };
 
-            Promise.all([this.getCustomers(), this.getQuizes(), this.getLoginAnalytics(), this.getOrderAnalytics(), this.getAppOpenAnalytics()])
+            Promise.all([this.getCustomers(), this.getLoginAnalytics(), this.getOrderAnalytics(), this.getAppOpenAnalytics()])
               .then(res => {
-                console.log(res);
                 this.router.navigate(['/home']);
                 this.globals.loader_finished = true;
               });
@@ -119,22 +118,6 @@ export class LoginComponent implements OnInit {
             });
           });
           this.globals.notification_test_list = userList;
-          res(data.result);
-        }
-      });
-    });
-  }
-
-  getQuizes() {
-    return new Promise((res, rej) => {
-      this.api.getAllQuizes().subscribe((data: any) => {
-        if (data.error) {
-          rej(data.error);
-        } else {
-
-          if (data.quiz != undefined) {
-            this.globals.quiz_list_original = data.quiz;
-          }
           res(data.result);
         }
       });
