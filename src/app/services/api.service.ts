@@ -59,16 +59,16 @@ export class ApiService {
     }));
   }
 
-  sendNotificationToEveryone(message: String, title: String) {
-    return this.http.post(this.apiUrl + `/message/topic`, { title: title, description: message, topic: "main" }).pipe(catchError((error: any) => {
+  sendNotificationToEveryone(message: String, title: String, urlValue: String) {
+    return this.http.post(this.apiUrl + `/message/topic`, { title: title, description: message, url: urlValue, topic: "main" }).pipe(catchError((error: any) => {
       console.log(error)
       return ([{ error: error }]);
     }))
   }
 
-  sendNotificationToAccount(message: String, title: String, tokens: Array<any>) {
+  sendNotificationToAccount(message: String, title: String, userId: Number, urlValue: String, tokens: Array<any>) {
     console.log({ title: title, description: message, userTokens: tokens })
-    return this.http.post(this.apiUrl + `/message/multiple`, { title: title, description: message, userTokens: tokens }).pipe(catchError((error: any) => {
+    return this.http.post(this.apiUrl + `/message/multiple`, { title: title, description: message, url: urlValue, userId: userId, userTokens: tokens }).pipe(catchError((error: any) => {
       console.log(error)
       return ([{ error: error }])
     }))

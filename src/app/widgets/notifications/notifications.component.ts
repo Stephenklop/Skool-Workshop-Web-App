@@ -87,7 +87,7 @@ export class NotificationsComponent implements OnInit {
       this.isDisabled = false;
 
       if (this.titleValue != '' && this.descValue != '') {
-        this.api.sendNotificationToEveryone(this.descValue, this.titleValue).subscribe(data => {
+        this.api.sendNotificationToEveryone(this.descValue, this.titleValue, this.urlValue).subscribe(data => {
           console.log(data)
         })
         this.resetForm();
@@ -109,7 +109,7 @@ export class NotificationsComponent implements OnInit {
           this.descValue +
           ';'
         );
-        this.api.sendNotificationToAccount(this.descValue, this.titleValue, this.selectedUser.tokens).subscribe(data => {
+        this.api.sendNotificationToAccount(this.descValue, this.titleValue, this.selectedUser.id, this.urlValue, this.selectedUser.tokens).subscribe(data => {
           console.log(data)
         })
         this.resetForm();
