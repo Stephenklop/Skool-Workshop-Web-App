@@ -39,10 +39,7 @@ export class ApiService {
       status: false,
     }, {
       headers: new HttpHeaders().set('Authorization', String(this.token))
-    }).pipe(catchError(error => {
-      console.log(error)
-      return ([{ error: error }]);
-    }));
+    });
   }
 
   getAllQuizes() {
@@ -52,13 +49,20 @@ export class ApiService {
     }));
   }
 
-  setQuizStatus(title: String, status: boolean) {
-    return this.http.put(this.apiUrl + `/quiz/${title}`, {}).pipe(catchError((error: any) => {
+  updateQuiz(title: String, url: String, status: boolean) {
+    this.token = new String("Bearer " + this.globals.login_token);
+    return this.http.put(this.apiUrl + `/quiz/${title}`, {
+      title: this,
+      url: url,
+      status: status
+    }, {
+      headers: new HttpHeaders().set('Authorization', String(this.token))
+    }).pipe(catchError((error: any) => {
       console.log(error)
       return ([{ error: error }]);
     }));
   }
-
+  
   sendNotificationToEveryone(message: String, title: String, urlValue: String) {
     return this.http.post(this.apiUrl + `/message/topic`, { title: title, description: message, url: urlValue, topic: "main" }).pipe(catchError((error: any) => {
       console.log(error)

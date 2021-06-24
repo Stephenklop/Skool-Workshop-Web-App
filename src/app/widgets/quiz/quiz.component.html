@@ -1,15 +1,13 @@
-<section class="quiz">
-    <h2 class="quiz-title">Verander quiz</h2>
+<!-- <section class="quiz">
+    <h2 class="quiz-title">Quiz</h2>
     <div class="quiz__choose gridster-item-content">
-        <h3 class="quiz__choose-title">Bestaande Quizen:</h3>
         <div class="quiz__choose-list" *ngIf="quizes">
-            <div class="quiz__choose-list-item" *ngFor="let quiz of quizes" id="quizDiv{{quiz.id}}"
-                (click)="titleChecked = quiz.title">
-                <input type="radio" name="quizChooser" id="quizRadioButton{{quiz.url}}"
+            <div class="quiz__choose-list-item" *ngFor="let quiz of quizes; let i = index" id="quizDiv{{i}}"
+                (click)="titleChecked = quiz.Title">
+                <input type="radio" name="quizChooser" id="quizRadioButton{{quiz.Url}}"
                     class="quiz__choose-list-item-input" [checked]="quiz.status === true">
                 <div class=" quiz__choose-list-item-text">
-                    <h2 class="quiz__choose-list-item-text-title">{{quiz.title}}</h2>
-                    <p class="quiz__choose-list-item-text-link">{{quiz.url}}</p>
+                    <h2 class="quiz__choose-list-item-text-title">{{quiz.Title}}</h2>
                 </div>
             </div>
         </div>
@@ -36,5 +34,24 @@
                 <button (click)="createNewQuiz()" class="quiz__create__input-button-button">Toevoegen</button>
             </div>
         </div>
+    </div>
+</section> -->
+
+<section class="quiz">
+    <div class="quiz__left">
+        <h3 class="quiz__left-title">Quiz</h3>
+        <ul class="quiz__left-list">
+            <li *ngFor="let item of quizes" class="quiz__left-list__item" (click)="selectQuiz(item)" id="quizItem{{item.Title}}">{{ item.Title }}</li>
+        </ul>
+    </div>
+    <div class="quiz__right">
+        <h3 class="quiz__right-title">Quiz Item Title</h3>
+        <form class="quiz__right-form">
+            <input [(ngModel)]="titleValue" type="text" name="quizTitleInput" id="quizTitleInput" placeholder="Titel:">
+            <input [(ngModel)]="linkValue" type="text" name="quizLinkInput" id="quizLinkInput" placeholder="Link:">
+            <button [hidden]="hidden" (click)="updateQuiz(false)">Updaten</button>
+            <button [hidden]="!hidden" (click)="createNewQuiz()">Toevoegen</button>
+            <button [hidden]="hidden" (click)="updateQuiz(true)">Quiz Activeren</button>
+        </form>
     </div>
 </section>
